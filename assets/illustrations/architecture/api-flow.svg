@@ -1,0 +1,24 @@
+<svg width="520" height="260" viewBox="0 0 520 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="28" y="42" width="120" height="54" rx="12" stroke="#24211D" stroke-width="2"/>
+  <text x="88" y="74" text-anchor="middle" font-family="Georgia" font-size="16" fill="#24211D">React UI</text>
+
+  <rect x="206" y="42" width="120" height="54" rx="12" stroke="#24211D" stroke-width="2"/>
+  <text x="266" y="74" text-anchor="middle" font-family="Georgia" font-size="16" fill="#24211D">FastAPI</text>
+
+  <rect x="372" y="42" width="120" height="54" rx="12" stroke="#24211D" stroke-width="2"/>
+  <text x="432" y="74" text-anchor="middle" font-family="Georgia" font-size="16" fill="#24211D">AI Layer</text>
+
+  <path d="M150 70 C170 62, 184 62, 204 70" stroke="#6F7F4F" stroke-width="2" stroke-linecap="round"/>
+  <path d="M326 70 C344 62, 354 62, 370 70" stroke="#6F7F4F" stroke-width="2" stroke-linecap="round"/>
+
+  <rect x="120" y="158" width="120" height="54" rx="12" stroke="#24211D" stroke-width="2"/>
+  <text x="180" y="190" text-anchor="middle" font-family="Georgia" font-size="16" fill="#24211D">Storage</text>
+
+  <rect x="290" y="158" width="120" height="54" rx="12" stroke="#24211D" stroke-width="2"/>
+  <text x="350" y="190" text-anchor="middle" font-family="Georgia" font-size="16" fill="#24211D">Cloud</text>
+
+  <path d="M266 98 C250 125, 220 136, 185 156" stroke="#6F7F4F" stroke-width="2" stroke-linecap="round"/>
+  <path d="M432 98 C420 130, 390 145, 355 156" stroke="#6F7F4F" stroke-width="2" stroke-linecap="round"/>
+
+  <text x="36" y="244" font-family="Georgia" font-size="15" fill="#6F685F">request → reasoning → response</text>
+</svg>

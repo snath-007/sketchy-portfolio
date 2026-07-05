@@ -1,0 +1,28 @@
+.section {
+  padding: 4rem 0;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid > article:first-child {
+  min-height: 300px;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1.25fr 0.75fr;
+    align-items: stretch;
+  }
+
+  .grid > article:first-child {
+    grid-row: span 2;
+    padding: 2rem;
+  }
+
+  .grid > article:first-child h3 {
+    font-size: 2.2rem;
+  }
+}

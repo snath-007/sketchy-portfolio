@@ -1,0 +1,18 @@
+.card {
+  position: relative;
+  background: var(--color-paper-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0 rgba(36, 33, 29, 0.045);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.hover:hover {
+  transform: translateY(-4px) rotate(-0.35deg);
+  border-color: var(--color-accent);
+  box-shadow: 12px 12px 0 rgba(36, 33, 29, 0.08);
+}
