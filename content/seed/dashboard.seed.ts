@@ -1,9 +1,10 @@
 export const dashboardSeed = {
   sprint: [
-    { label: "Sketchy Engineering Portfolio", done: true },
-    { label: "AI Architecture Notes", done: true },
-    { label: "MCP Playground", done: false },
-    { label: "Architecture Library", done: false },
+    { label: "Agentic AI Systems", done: true },
+    { label: "ProcLeg Case Study", done: true },
+    { label: "RevFlow AI Lab", done: true },
+    { label: "Data Governance Notes", done: false },
+    { label: "Architecture Essays", done: false },
   ],
-  stack: ["React 19", "Next.js", "FastAPI", "AWS", "Snowflake", "OpenAI"],
+  stack: ["LangGraph", "FastAPI", "Next.js", "Snowflake", "AWS", "RAG"],
 };

@@ -1,3 +1,5 @@
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import Container from "@/components/layout/Container/Container";
 import ArticleCard from "@/components/portfolio/ArticleCard/ArticleCard";
 import SectionHeader from "@/components/shared/SectionHeader/SectionHeader";
@@ -10,13 +12,18 @@ export default function LatestEssays() {
   return (
     <section className={styles.section}>
       <Container>
-        <SectionHeader
-          eyebrow="Essays"
-          title="Notes on software, systems, and AI engineering"
-          description="Short-form engineering notes, architecture breakdowns, and lessons from building production software."
-        />
+        <div className={styles.headerRow}>
+          <SectionHeader
+            eyebrow="Recent Writing"
+            title="Thoughts on software, systems, and AI engineering."
+            description="Short engineering notes, architecture breakdowns, and lessons from building production software."
+          />
+          <Link href="/essays" className={styles.sectionLink}>
+            Read all essays <ArrowRight size={14} />
+          </Link>
+        </div>
 
-        <div className={styles.grid}>
+        <div className={styles.list}>
           {featured.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}

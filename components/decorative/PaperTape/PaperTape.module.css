@@ -6,11 +6,11 @@
   height: 22px;
   background: linear-gradient(
     90deg,
-    rgba(222, 211, 194, 0.5),
-    rgba(222, 211, 194, 0.9),
-    rgba(222, 211, 194, 0.5)
+    var(--color-tape-start),
+    var(--color-tape-mid),
+    var(--color-tape-start)
   );
-  box-shadow: 0 2px 8px rgba(36, 33, 29, 0.08);
+  box-shadow: 0 2px 8px var(--color-shadow-soft);
   transform: rotate(-3deg);
   pointer-events: none;
 }

@@ -26,5 +26,9 @@ export default function Button({
     );
   }
 
-  return <button className={buttonClassName}>{children}</button>;
+  return (
+    <button className={buttonClassName} type="button">
+      {children}
+    </button>
+  );
 }

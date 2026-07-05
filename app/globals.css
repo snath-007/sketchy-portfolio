@@ -13,21 +13,27 @@ html {
 body {
   margin: 0;
   background:
-    linear-gradient(rgba(36, 33, 29, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(36, 33, 29, 0.025) 1px, transparent 1px),
-    radial-gradient(
-      circle at top left,
-      rgba(111, 127, 79, 0.14),
-      transparent 28rem
+    linear-gradient(
+      color-mix(in srgb, var(--color-ink) 2.2%, transparent) 1px,
+      transparent 1px
     ),
-    var(--color-paper);
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-ink) 1.8%, transparent) 1px,
+      transparent 1px
+    ), var(--color-paper);
   background-size:
-    32px 32px,
-    32px 32px,
-    auto,
+    34px 34px,
+    34px 34px,
     auto;
   color: var(--color-ink);
   font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 a {
@@ -44,5 +50,5 @@ select {
 
 ::selection {
   background: var(--color-accent);
-  color: var(--color-paper-soft);
+  color: var(--color-ink);
 }

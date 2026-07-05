@@ -1,26 +1,33 @@
-import SectionHeader from "@/components/shared/SectionHeader/SectionHeader";
-import WorkCard from "@/components/portfolio/WorkCard/Workcard";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import Container from "@/components/layout/Container/Container";
+import WorkCard from "@/components/portfolio/WorkCard/Workcard";
+import SectionHeader from "@/components/shared/SectionHeader/SectionHeader";
 import { workSeed } from "@/content/seed/work.seed";
 
 import styles from "./FeaturedWork.module.css";
 
 export default function FeaturedWork() {
-  const featured = workSeed.filter((item) => item.featured);
+  const featured =
+    workSeed.find((item) => item.slug === "procurement-legal-ai-assistant") ??
+    workSeed[0];
 
   return (
     <section className={styles.section}>
       <Container>
-        <SectionHeader
-          eyebrow="Engineering"
-          title="Selected Engineering Work"
-          description="A selection of enterprise systems, AI applications, and products I've contributed to."
-        />
+        <div className={styles.headerRow}>
+          <SectionHeader
+            eyebrow="Selected Engineering Work"
+            title="A featured case study from production."
+            description="One deeper engineering story up front, with the full archive available on the Work page."
+          />
+          <Link href="/work" className={styles.sectionLink}>
+            View all work <ArrowRight size={14} />
+          </Link>
+        </div>
 
         <div className={styles.grid}>
-          {featured.map((work) => (
-            <WorkCard key={work.id} work={work} />
-          ))}
+          <WorkCard work={featured} featured />
         </div>
       </Container>
     </section>

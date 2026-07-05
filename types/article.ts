@@ -1,3 +1,8 @@
+export interface ArticleSection {
+  heading: string;
+  body: string;
+}
+
 export interface ArticleItem {
   id: string;
   slug: string;
@@ -6,4 +11,5 @@ export interface ArticleItem {
   publishedAt: string;
   readingTime: string;
   featured: boolean;
+  sections: ArticleSection[];
 }

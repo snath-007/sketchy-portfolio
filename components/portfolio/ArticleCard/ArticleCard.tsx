@@ -1,6 +1,5 @@
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Badge from "@/components/shared/Badge/Badge";
-import Card from "@/components/ui/Card/Card";
 import type { ArticleItem } from "@/types/article";
 import styles from "./ArticleCard.module.css";
 
@@ -10,21 +9,20 @@ interface ArticleCardProps {
 
 export default function ArticleCard({ article }: ArticleCardProps) {
   return (
-    <Card hover className={styles.card}>
-      <Badge>Essay</Badge>
-
-      <div>
-        <h3 className={styles.title}>{article.title}</h3>
-        <p className={styles.meta}>
-          {article.publishedAt} · {article.readingTime}
-        </p>
+    <article className={styles.card}>
+      <div className={styles.meta}>
+        <span>{article.publishedAt}</span>
+        <span>{article.readingTime}</span>
       </div>
 
-      <p className={styles.summary}>{article.summary}</p>
+      <div className={styles.copy}>
+        <h3 className={styles.title}>{article.title}</h3>
+        <p className={styles.summary}>{article.summary}</p>
+      </div>
 
       <Link href={`/essays/${article.slug}`} className={styles.link}>
-        Read essay →
+        <ArrowRight size={17} />
       </Link>
-    </Card>
+    </article>
   );
 }

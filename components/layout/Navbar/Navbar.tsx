@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import ThemeToggle from "@/components/layout/ThemeToggle/ThemeToggle";
 import Container from "../Container/Container";
 import styles from "./Navbar.module.css";
 
@@ -31,6 +32,8 @@ export default function Navbar() {
             <Link href="/resume.pdf" className={styles.resume}>
               Resume <ArrowUpRight size={14} />
             </Link>
+
+            <ThemeToggle />
           </div>
         </nav>
       </Container>

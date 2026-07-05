@@ -1,3 +1,4 @@
+import ContactCTA from "@/components/home/ContactCTA/ContactCTA";
 import FeaturedLab from "@/components/home/FeaturedLab/FeaturedLab";
 import FeaturedWork from "@/components/home/FeaturedWork/FeaturedWork";
 import Hero from "@/components/home/Hero/Hero";
@@ -10,6 +11,7 @@ export default function Home() {
       <FeaturedWork />
       <FeaturedLab />
       <LatestEssays />
+      <ContactCTA />
     </main>
   );
 }

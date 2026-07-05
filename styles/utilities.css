@@ -4,8 +4,9 @@
 }
 
 .eyebrow {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-accent-dark);
+  color: var(--color-muted);
 }

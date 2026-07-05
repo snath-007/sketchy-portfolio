@@ -1,6 +1,8 @@
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import TodaysNotes from "@/components/home/TodaysNotes/TodaysNotes";
 import Container from "@/components/layout/Container/Container";
 import Button from "@/components/ui/Button/Button";
-import TodaysNotes from "@/components/home/TodaysNotes/TodaysNotes";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
@@ -21,27 +23,32 @@ export default function Hero() {
             </h1>
 
             <p className={styles.description}>
-              I build enterprise AI products, internal developer platforms, and
-              engineering systems that scale.
+              A notebook of shipped work, architecture decisions, personal
+              experiments, and essays from a software engineer working across
+              React, FastAPI, cloud systems, and enterprise AI.
             </p>
 
             <div className={styles.actions}>
-              <Button href="/work">View Engineering Work →</Button>
+              <Button href="/work">
+                View Work <ArrowRight size={15} />
+              </Button>
               <Button href="/lab" variant="secondary">
-                Explore Lab →
+                Explore Lab <ArrowRight size={15} />
               </Button>
             </div>
-
-            <p className={styles.annotation}>
-              Focus on clarity. Ship with intention.
-            </p>
           </div>
 
           <div className={styles.visual}>
-            <p className={styles.sideNote}>
-              Turning ideas into systems that create real impact.
-            </p>
+            <div className={styles.diagram} aria-hidden="true">
+              <Image
+                src="/assets/illustrations/architecture/api-flow.svg"
+                alt=""
+                width={280}
+                height={150}
+              />
+            </div>
             <TodaysNotes />
+            <p className={styles.sideNote}>Ship things that make an impact.</p>
           </div>
         </div>
       </Container>

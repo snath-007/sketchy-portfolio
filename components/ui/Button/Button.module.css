@@ -1,30 +1,86 @@
 .button {
+  position: relative;
   display: inline-flex;
+  min-height: 42px;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  padding: 0.8rem 1.15rem;
-  font-size: 0.95rem;
-  font-weight: 600;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  padding: 0.72rem 1.05rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  isolation: isolate;
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease,
+    color 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.button::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    transparent 35%,
+    color-mix(in srgb, var(--color-paper-soft) 28%, transparent) 48%,
+    transparent 62%,
+    transparent 100%
+  );
+  content: "";
+  transform: translateX(-120%);
+  transition: transform 0.55s ease;
 }
 
 .button:hover {
   transform: translateY(-2px);
 }
 
+.button:hover::after {
+  transform: translateX(120%);
+}
+
+.button svg {
+  transition: transform 0.22s ease;
+}
+
+.button:hover svg {
+  transform: translateX(3px);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 .primary {
   background: var(--color-ink);
   color: var(--color-paper-soft);
+  box-shadow: 0 8px 18px var(--color-shadow);
+}
+
+.primary:hover {
+  box-shadow:
+    0 12px 26px var(--color-shadow),
+    0 0 0 1px color-mix(in srgb, var(--color-accent) 40%, transparent);
 }
 
 .secondary {
-  border: 1px solid var(--color-border);
-  background: var(--color-paper-soft);
+  border: 1px solid transparent;
+  border-bottom: 1px dashed var(--color-ink);
+  background: transparent;
   color: var(--color-ink);
+  box-shadow: none;
+}
+
+.secondary:hover {
+  border-color: var(--color-border);
+  background: color-mix(in srgb, var(--color-paper-soft) 72%, transparent);
+  box-shadow: 0 8px 18px var(--color-shadow-soft);
 }
 
 .ghost {
@@ -32,5 +88,6 @@
 }
 
 .ghost:hover {
+  background: color-mix(in srgb, var(--color-paper-soft) 62%, transparent);
   color: var(--color-ink);
 }
