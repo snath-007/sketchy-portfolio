@@ -20,7 +20,7 @@ export default function AboutPage() {
               Senior Software Engineer. Full-stack and agentic AI systems.
             </h1>
             <p className={styles.description}>
-              I&apos;m a Bangalore-based software engineer with 4+ years of
+              I&apos;m a Bangalore-based software engineer with 5+ years of
               experience building backend systems, full-stack products, and
               agentic AI pipelines for enterprise clients including AstraZeneca,
               Alexion, Bank of America, and HALO.

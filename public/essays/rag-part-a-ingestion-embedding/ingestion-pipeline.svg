@@ -1,0 +1,78 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'SF Mono', Menlo, monospace">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3b4252"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="420" fill="#faf9f6"/>
+
+  <text x="450" y="30" font-size="14" fill="#1c1f26" text-anchor="middle" letter-spacing="1" font-weight="700">INGESTION AS A CHAIN OF TRUST DECISIONS</text>
+
+  <!-- main chain -->
+  <g>
+    <rect x="24" y="70" width="120" height="60" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="84" y="95" font-size="11.5" fill="#1c1f26" text-anchor="middle" font-weight="700">Enterprise</text>
+    <text x="84" y="110" font-size="11.5" fill="#1c1f26" text-anchor="middle" font-weight="700">Sources</text>
+  </g>
+  <line x1="144" y1="100" x2="178" y2="100" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="182" y="70" width="110" height="60" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="237" y="105" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Extract</text>
+  </g>
+  <line x1="292" y1="100" x2="326" y2="100" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="330" y="70" width="150" height="60" rx="4" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+    <text x="405" y="94" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Normalize &amp;</text>
+    <text x="405" y="110" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Classify</text>
+  </g>
+  <line x1="480" y1="100" x2="514" y2="100" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="518" y="70" width="110" height="60" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="573" y="105" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Chunk</text>
+  </g>
+  <line x1="628" y1="100" x2="662" y2="100" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="666" y="70" width="110" height="60" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="721" y="105" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Embed</text>
+  </g>
+  <line x1="776" y1="100" x2="800" y2="100" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="800" y1="100" x2="800" y2="140" stroke="#3b4252" stroke-width="1.6"/>
+
+  <!-- Metadata & ACLs band threading beneath -->
+  <rect x="24" y="160" width="852" height="50" rx="4" fill="#1c1f26"/>
+  <text x="450" y="182" font-size="12" fill="#faf9f6" text-anchor="middle" font-weight="700" letter-spacing="0.5">METADATA &amp; ACLs — THREADED THROUGH EVERY STAGE, NOT APPENDED AT THE END</text>
+  <text x="450" y="198" font-size="9.5" fill="#a9b0bf" text-anchor="middle">lost mid-pipeline = unreachable (annoying) or reachable by everyone (an incident)</text>
+
+  <!-- stems from each stage down to the band -->
+  <line x1="84" y1="130" x2="84" y2="160" stroke="#d8dbe3" stroke-width="1"/>
+  <line x1="237" y1="130" x2="237" y2="160" stroke="#d8dbe3" stroke-width="1"/>
+  <line x1="405" y1="130" x2="405" y2="160" stroke="#d8dbe3" stroke-width="1"/>
+  <line x1="573" y1="130" x2="573" y2="160" stroke="#d8dbe3" stroke-width="1"/>
+  <line x1="721" y1="130" x2="721" y2="160" stroke="#d8dbe3" stroke-width="1"/>
+
+  <line x1="450" y1="210" x2="450" y2="250" stroke="#3b4252" stroke-width="1.6"/>
+
+  <!-- terminal stores -->
+  <line x1="450" y1="250" x2="300" y2="250" stroke="#3b4252" stroke-width="1.6"/>
+  <line x1="450" y1="250" x2="600" y2="250" stroke="#3b4252" stroke-width="1.6"/>
+  <line x1="300" y1="250" x2="300" y2="280" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="600" y1="250" x2="600" y2="280" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="200" y="284" width="200" height="66" rx="4" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+    <text x="300" y="312" font-size="12.5" fill="#1c1f26" text-anchor="middle" font-weight="700">Vector Index</text>
+    <text x="300" y="330" font-size="9.5" fill="#5b6270" text-anchor="middle">embeddings + filterable metadata</text>
+  </g>
+
+  <g>
+    <rect x="500" y="284" width="200" height="66" rx="4" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+    <text x="600" y="312" font-size="12.5" fill="#1c1f26" text-anchor="middle" font-weight="700">Object Store</text>
+    <text x="600" y="330" font-size="9.5" fill="#5b6270" text-anchor="middle">full source content, larger context</text>
+  </g>
+
+  <text x="450" y="392" font-size="10" fill="#8891a3" text-anchor="middle" font-style="italic">Index for search. Object store for the content the index points back to.</text>
+</svg>

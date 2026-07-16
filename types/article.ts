@@ -1,6 +1,12 @@
 export interface ArticleSection {
   heading: string;
-  body: string;
+  body: string[];
+  bullets?: string[];
+  note?: string;
+  diagram?: {
+    title: string;
+    definition: string;
+  };
 }
 
 export interface ArticleItem {
@@ -11,5 +17,7 @@ export interface ArticleItem {
   publishedAt: string;
   readingTime: string;
   featured: boolean;
+  published: boolean;
+  content?: string;
   sections: ArticleSection[];
 }

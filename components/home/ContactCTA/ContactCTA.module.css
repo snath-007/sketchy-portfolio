@@ -72,3 +72,27 @@
     transform: none;
   }
 }
+
+/* Application-wide responsive pass */
+@media (max-width: 1600px) {
+  .section {
+    padding: clamp(2.25rem, 4vw, 3.25rem) 0;
+  }
+  .card {
+    padding: clamp(1.15rem, 2.2vw, 1.65rem);
+  }
+  .card h2 {
+    font-size: clamp(1.45rem, 2.5vw, 1.85rem);
+  }
+}
+@media (max-width: 760px) {
+  .section {
+    padding: 2rem 0;
+  }
+  .card {
+    gap: 1rem;
+  }
+  .note {
+    display: none;
+  }
+}

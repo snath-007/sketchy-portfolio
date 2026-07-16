@@ -1,7 +1,7 @@
 import Container from "@/components/layout/Container/Container";
 import styles from "@/components/pages/ListingPage/ListingPage.module.css";
 import ArticleCard from "@/components/portfolio/ArticleCard/ArticleCard";
-import { essaysSeed } from "@/content/seed/essays.seed";
+import { publishedEssays } from "@/content/seed/essays.seed";
 
 export const metadata = {
   title: "Essays | Soumen Nath",
@@ -31,7 +31,7 @@ export default function EssaysPage() {
         </header>
 
         <div className={styles.essayList}>
-          {essaysSeed.map((article) => (
+          {publishedEssays.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
         </div>

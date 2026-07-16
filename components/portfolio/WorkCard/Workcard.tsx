@@ -13,20 +13,26 @@ interface WorkCardProps {
 
 export default function WorkCard({ work, featured = false }: WorkCardProps) {
   return (
-    <Card hover className={featured ? styles.featuredCard : styles.card}>
-      <div className={styles.content}>
-        <Badge>{work.category}</Badge>
+    <Link
+      href={`/work/${work.slug}`}
+      className={styles.cardLink}
+      aria-label={`View case study: ${work.title}`}
+    >
+      <Card hover className={featured ? styles.featuredCard : styles.card}>
+        <div className={styles.content}>
+          <Badge>{work.category}</Badge>
 
-        <h3 className={styles.title}>{work.title}</h3>
+          <h3 className={styles.title}>{work.title}</h3>
 
-        <p className={styles.summary}>{work.summary}</p>
+          <p className={styles.summary}>{work.summary}</p>
 
-        <TechnologyList technologies={work.technologies} />
+          <TechnologyList technologies={work.technologies} />
 
-        <Link href={`/work/${work.slug}`} className={styles.link}>
-          View case study <ArrowRight size={14} />
-        </Link>
-      </div>
-    </Card>
+          <span className={styles.link} aria-hidden="true">
+            View case study <ArrowRight size={14} />
+          </span>
+        </div>
+      </Card>
+    </Link>
   );
 }

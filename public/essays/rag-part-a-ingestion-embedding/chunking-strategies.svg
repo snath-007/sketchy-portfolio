@@ -1,0 +1,63 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'SF Mono', Menlo, monospace">
+  <rect x="0" y="0" width="900" height="400" fill="#faf9f6"/>
+
+  <text x="450" y="30" font-size="14" fill="#1c1f26" text-anchor="middle" letter-spacing="1" font-weight="700">CHUNKING STRATEGIES: PRECISION VS. CONTEXT</text>
+
+  <!-- axis -->
+  <line x1="60" y1="330" x2="840" y2="330" stroke="#c9cdd6" stroke-width="1.4"/>
+  <text x="60" y="350" font-size="9.5" fill="#8891a3">simplest</text>
+  <text x="840" y="350" font-size="9.5" fill="#8891a3" text-anchor="end">most structure-aware</text>
+
+  <!-- 4 cards -->
+  <g>
+    <rect x="40" y="70" width="190" height="230" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="135" y="98" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Fixed token</text>
+    <text x="135" y="114" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">windows</text>
+    <text x="135" y="140" font-size="9.5" fill="#5b6270" text-anchor="middle">Simple, fast, predictable —</text>
+    <text x="135" y="154" font-size="9.5" fill="#5b6270" text-anchor="middle">splits wherever the count</text>
+    <text x="135" y="168" font-size="9.5" fill="#5b6270" text-anchor="middle">limit lands.</text>
+    <text x="135" y="200" font-size="9.5" fill="#b0533f" font-style="italic" text-anchor="middle">will cut a sentence,</text>
+    <text x="135" y="214" font-size="9.5" fill="#b0533f" font-style="italic" text-anchor="middle">a table row, a clause</text>
+    <text x="135" y="260" font-size="9.5" fill="#8891a3" text-anchor="middle">fine for homogeneous,</text>
+    <text x="135" y="274" font-size="9.5" fill="#8891a3" text-anchor="middle">low-structure prose</text>
+  </g>
+
+  <g>
+    <rect x="245" y="70" width="190" height="230" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="340" y="98" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Recursive</text>
+    <text x="340" y="114" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">splitting</text>
+    <text x="340" y="140" font-size="9.5" fill="#5b6270" text-anchor="middle">Splits at headings and</text>
+    <text x="340" y="154" font-size="9.5" fill="#5b6270" text-anchor="middle">paragraphs first, size</text>
+    <text x="340" y="168" font-size="9.5" fill="#5b6270" text-anchor="middle">limit as fallback.</text>
+    <text x="340" y="200" font-size="9.5" fill="#166534" font-style="italic" text-anchor="middle">fixes most naive</text>
+    <text x="340" y="214" font-size="9.5" fill="#166534" font-style="italic" text-anchor="middle">boundary failures</text>
+    <text x="340" y="260" font-size="9.5" fill="#8891a3" text-anchor="middle">a strong default for</text>
+    <text x="340" y="274" font-size="9.5" fill="#8891a3" text-anchor="middle">most structured docs</text>
+  </g>
+
+  <g>
+    <rect x="450" y="70" width="190" height="230" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="545" y="98" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Semantic</text>
+    <text x="545" y="114" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">chunking</text>
+    <text x="545" y="140" font-size="9.5" fill="#5b6270" text-anchor="middle">Groups sentences by</text>
+    <text x="545" y="154" font-size="9.5" fill="#5b6270" text-anchor="middle">topical coherence, not</text>
+    <text x="545" y="168" font-size="9.5" fill="#5b6270" text-anchor="middle">structural markers.</text>
+    <text x="545" y="200" font-size="9.5" fill="#8891a3" font-style="italic" text-anchor="middle">costlier, harder to</text>
+    <text x="545" y="214" font-size="9.5" fill="#8891a3" font-style="italic" text-anchor="middle">reason about deterministically</text>
+    <text x="545" y="260" font-size="9.5" fill="#8891a3" text-anchor="middle">for docs where formatting</text>
+    <text x="545" y="274" font-size="9.5" fill="#8891a3" text-anchor="middle">doesn't track meaning</text>
+  </g>
+
+  <g>
+    <rect x="660" y="70" width="200" height="230" rx="6" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+    <text x="760" y="98" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Parent-child</text>
+    <text x="760" y="114" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">indexing</text>
+    <text x="760" y="140" font-size="9.5" fill="#5b6270" text-anchor="middle">Search small, precise</text>
+    <text x="760" y="154" font-size="9.5" fill="#5b6270" text-anchor="middle">fragments; return the</text>
+    <text x="760" y="168" font-size="9.5" fill="#5b6270" text-anchor="middle">larger parent section.</text>
+    <text x="760" y="200" font-size="9.5" fill="#166534" font-style="italic" text-anchor="middle">resolves the actual</text>
+    <text x="760" y="214" font-size="9.5" fill="#166534" font-style="italic" text-anchor="middle">precision vs. context tension</text>
+    <text x="760" y="260" font-size="9.5" fill="#8891a3" text-anchor="middle">highest-leverage choice for</text>
+    <text x="760" y="274" font-size="9.5" fill="#8891a3" text-anchor="middle">contracts, policies, docs</text>
+  </g>
+</svg>

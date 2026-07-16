@@ -49,3 +49,25 @@
     display: none;
   }
 }
+
+/* Application-wide responsive pass */
+@media (max-width: 1600px) {
+  .header {
+    margin-bottom: clamp(1.75rem, 3vw, 2.35rem);
+  }
+  .header h2 {
+    font-size: clamp(1.55rem, 2.4vw, 2.05rem);
+  }
+  .header p:not(.eyebrow) {
+    font-size: 0.86rem;
+  }
+}
+@media (max-width: 760px) {
+  .header {
+    gap: 0.75rem;
+    margin-bottom: 1.6rem;
+  }
+  .header h2 {
+    font-size: clamp(1.45rem, 7vw, 1.85rem);
+  }
+}

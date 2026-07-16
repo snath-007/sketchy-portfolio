@@ -1,0 +1,55 @@
+<svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'SF Mono', Menlo, monospace">
+  <rect x="0" y="0" width="900" height="460" fill="#faf9f6"/>
+
+  <text x="450" y="34" font-size="14" fill="#1c1f26" text-anchor="middle" letter-spacing="1" font-weight="700">FOUR KINDS OF FRONTEND STATE</text>
+  <text x="450" y="52" font-size="10.5" fill="#8891a3" text-anchor="middle">most frontend complexity is these four getting collapsed into one store</text>
+
+  <!-- axis lines -->
+  <line x1="450" y1="80" x2="450" y2="430" stroke="#c9cdd6" stroke-width="1"/>
+  <line x1="60" y1="255" x2="840" y2="255" stroke="#c9cdd6" stroke-width="1"/>
+
+  <text x="450" y="76" font-size="9.5" fill="#a9b0bf" text-anchor="middle">LIVES ON SERVER</text>
+  <text x="450" y="444" font-size="9.5" fill="#a9b0bf" text-anchor="middle">LIVES ON CLIENT</text>
+  <text x="55" y="250" font-size="9.5" fill="#a9b0bf" text-anchor="end">PERSISTENT</text>
+  <text x="845" y="250" font-size="9.5" fill="#a9b0bf" text-anchor="start">EPHEMERAL</text>
+
+  <!-- Quadrant 1: Server state (top-left) -->
+  <g>
+    <rect x="90" y="100" width="330" height="130" rx="6" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.6"/>
+    <text x="110" y="128" font-size="13" fill="#1c1f26" font-weight="700">Server state</text>
+    <text x="110" y="148" font-size="10" fill="#5b6270">A cache of backend data —</text>
+    <text x="110" y="164" font-size="10" fill="#5b6270">staleness, refetch, invalidation.</text>
+    <text x="110" y="188" font-size="10" fill="#8891a3" font-style="italic">React Query, SWR — not a</text>
+    <text x="110" y="204" font-size="10" fill="#8891a3" font-style="italic">global store.</text>
+  </g>
+
+  <!-- Quadrant 2: URL state (top-right) -->
+  <g>
+    <rect x="480" y="100" width="330" height="130" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="500" y="128" font-size="13" fill="#1c1f26" font-weight="700">URL state</text>
+    <text x="500" y="148" font-size="10" fill="#5b6270">Filters, tabs, pagination —</text>
+    <text x="500" y="164" font-size="10" fill="#5b6270">shareable, bookmarkable.</text>
+    <text x="500" y="188" font-size="10" fill="#8891a3" font-style="italic">If a shared link can't restore</text>
+    <text x="500" y="204" font-size="10" fill="#8891a3" font-style="italic">the view, it's in the wrong place.</text>
+  </g>
+
+  <!-- Quadrant 3: Form state (bottom-left) -->
+  <g>
+    <rect x="90" y="280" width="330" height="130" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="110" y="308" font-size="13" fill="#1c1f26" font-weight="700">Form state</text>
+    <text x="110" y="328" font-size="10" fill="#5b6270">Local and transient, validated</text>
+    <text x="110" y="344" font-size="10" fill="#5b6270">on its own terms.</text>
+    <text x="110" y="368" font-size="10" fill="#8891a3" font-style="italic">Becomes server state only</text>
+    <text x="110" y="384" font-size="10" fill="#8891a3" font-style="italic">at submission.</text>
+  </g>
+
+  <!-- Quadrant 4: Ephemeral UI state (bottom-right) -->
+  <g>
+    <rect x="480" y="280" width="330" height="130" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="500" y="308" font-size="13" fill="#1c1f26" font-weight="700">Ephemeral UI state</text>
+    <text x="500" y="328" font-size="10" fill="#5b6270">Is this modal open, this</text>
+    <text x="500" y="344" font-size="10" fill="#5b6270">dropdown expanded.</text>
+    <text x="500" y="368" font-size="10" fill="#8891a3" font-style="italic">Component-local. Never</text>
+    <text x="500" y="384" font-size="10" fill="#8891a3" font-style="italic">belongs in a global store.</text>
+  </g>
+</svg>

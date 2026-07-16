@@ -3,11 +3,11 @@ import Link from "next/link";
 import Container from "@/components/layout/Container/Container";
 import ArticleCard from "@/components/portfolio/ArticleCard/ArticleCard";
 import SectionHeader from "@/components/shared/SectionHeader/SectionHeader";
-import { essaysSeed } from "@/content/seed/essays.seed";
+import { publishedEssays } from "@/content/seed/essays.seed";
 import styles from "./LatestEssays.module.css";
 
 export default function LatestEssays() {
-  const featured = essaysSeed.filter((item) => item.featured);
+  const featured = publishedEssays.filter((item) => item.featured);
 
   return (
     <section className={styles.section}>

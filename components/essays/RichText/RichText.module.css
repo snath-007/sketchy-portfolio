@@ -1,0 +1,211 @@
+.richText {
+  color: var(--color-ink);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+.richText > :first-child {
+  margin-top: 0;
+}
+.richText > :last-child {
+  margin-bottom: 0;
+}
+.richText p {
+  margin: 0.8rem 0 0;
+}
+.richText h3,
+.richText h4 {
+  margin: 1.6rem 0 0.55rem;
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+.richText h3 {
+  font-size: 1.25rem;
+}
+.richText h4 {
+  font-size: 1.05rem;
+}
+.richText strong {
+  font-weight: 750;
+}
+.richText em {
+  color: var(--color-muted);
+}
+.richText a {
+  color: var(--color-ink);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.richText a:hover {
+  text-decoration-thickness: 2px;
+}
+.richText ul,
+.richText ol {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1rem 0;
+  padding-left: 1.35rem;
+}
+.richText li::marker {
+  color: var(--color-muted);
+  font-weight: 700;
+}
+.richText blockquote {
+  margin: 1.25rem 0;
+  border-left: 3px solid var(--color-ink);
+  background: var(--color-paper-soft);
+  padding: 0.8rem 1rem;
+  color: var(--color-muted);
+}
+.richText blockquote p {
+  margin: 0;
+}
+.richText code {
+  border: 1px solid var(--color-border);
+  border-radius: 0.3rem;
+  background: var(--color-paper-soft);
+  padding: 0.12em 0.35em;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.88em;
+}
+.richText pre {
+  margin: 1.25rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: #201f1b;
+  padding: 1rem;
+  overflow-x: auto;
+  color: #f7f0df;
+  line-height: 1.65;
+}
+.richText pre code {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: 0.82rem;
+}
+.richText table {
+  display: block;
+  width: 100%;
+  margin: 1.25rem 0;
+  border-collapse: collapse;
+  overflow-x: auto;
+  font-size: 0.88rem;
+}
+.richText th,
+.richText td {
+  border: 1px solid var(--color-border);
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+.richText th {
+  background: var(--color-paper-soft);
+  font-weight: 750;
+}
+.richText hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid var(--color-border);
+}
+.richText.compact {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 1600px) {
+  .richText {
+    font-size: 0.96rem;
+    line-height: 1.75;
+  }
+}
+
+@media (max-width: 640px) {
+  .richText {
+    font-size: 0.93rem;
+    line-height: 1.7;
+  }
+
+  .richText pre {
+    margin-inline: -0.25rem;
+    padding: 0.85rem;
+  }
+
+  .richText th,
+  .richText td {
+    padding: 0.55rem 0.6rem;
+  }
+}
+
+.richText img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-paper-soft);
+}
+
+/* Comfortable long-form rhythm */
+.richText p {
+  margin-top: 1.15rem;
+}
+
+.richText h2 {
+  margin: clamp(2.6rem, 5vw, 4rem) 0 1rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.65rem, 2.8vw, 2.15rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.richText h3 {
+  margin-top: 2.25rem;
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+}
+
+.richText h4 {
+  margin-top: 1.8rem;
+}
+
+.richText ul,
+.richText ol {
+  gap: 0.75rem;
+  margin: 1.35rem 0;
+}
+
+.richText blockquote,
+.richText pre,
+.richText table {
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.richText img {
+  margin-top: 2.25rem;
+  margin-bottom: 2.25rem;
+}
+
+@media (max-width: 640px) {
+  .richText p {
+    margin-top: 1rem;
+  }
+
+  .richText h2 {
+    margin-top: 2.35rem;
+    font-size: 1.55rem;
+  }
+
+  .richText h3 {
+    margin-top: 1.9rem;
+  }
+
+  .richText img {
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+}
