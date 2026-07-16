@@ -1,0 +1,66 @@
+<svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'SF Mono', Menlo, monospace">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3b4252"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="480" fill="#faf9f6"/>
+
+  <text x="450" y="32" font-size="14" fill="#1c1f26" text-anchor="middle" letter-spacing="1" font-weight="700">LANDING ZONE AND APPLICATION PATH</text>
+  <text x="450" y="50" font-size="10.5" fill="#8891a3" text-anchor="middle">identity shapes the landing zone; the landing zone constrains everything downstream</text>
+
+  <!-- Identity provider: top, wide, foundational -->
+  <rect x="300" y="76" width="300" height="54" rx="4" fill="#1c1f26"/>
+  <text x="450" y="99" font-size="12.5" fill="#faf9f6" text-anchor="middle" font-weight="700">Identity Provider</text>
+  <text x="450" y="116" font-size="9.5" fill="#a9b0bf" text-anchor="middle">shapes every boundary below it</text>
+
+  <line x1="450" y1="130" x2="450" y2="160" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- Landing zone + Network/Policy side by side -->
+  <rect x="220" y="164" width="220" height="60" rx="4" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+  <text x="330" y="188" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Cloud Landing Zone</text>
+  <text x="330" y="204" font-size="9.5" fill="#5b6270" text-anchor="middle">accounts, guardrails</text>
+
+  <line x1="440" y1="194" x2="465" y2="194" stroke="#3b4252" stroke-width="1.4"/>
+  <line x1="465" y1="194" x2="465" y2="194" stroke="#3b4252"/>
+  <path d="M 440 194 L 465 194" stroke="#3b4252" stroke-width="1.4" fill="none" marker-end="url(#arr)"/>
+  <path d="M 465 194 L 440 194" stroke="#3b4252" stroke-width="1.4" fill="none" marker-end="url(#arr)"/>
+
+  <rect x="465" y="164" width="215" height="60" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+  <text x="572" y="188" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Network &amp; Policy</text>
+  <text x="572" y="204" font-size="9.5" fill="#5b6270" text-anchor="middle">segmentation, controls</text>
+
+  <line x1="330" y1="224" x2="330" y2="254" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- Compute + Managed data -->
+  <rect x="220" y="258" width="220" height="60" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+  <text x="330" y="282" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Compute Platform</text>
+  <text x="330" y="298" font-size="9.5" fill="#5b6270" text-anchor="middle">functions, containers, k8s</text>
+
+  <line x1="440" y1="288" x2="463" y2="288" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <rect x="465" y="258" width="215" height="60" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+  <text x="572" y="282" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Managed Data</text>
+  <text x="572" y="298" font-size="9.5" fill="#5b6270" text-anchor="middle">database, warehouse, cache</text>
+
+  <line x1="330" y1="318" x2="330" y2="348" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="572" y1="318" x2="572" y2="348" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- Messaging + Central observability -->
+  <rect x="220" y="352" width="220" height="60" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+  <text x="330" y="376" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Messaging</text>
+  <text x="330" y="392" font-size="9.5" fill="#5b6270" text-anchor="middle">queues, event streams</text>
+
+  <line x1="440" y1="382" x2="463" y2="382" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <rect x="465" y="352" width="215" height="60" rx="4" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+  <text x="572" y="376" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Central Observability</text>
+  <text x="572" y="392" font-size="9.5" fill="#5b6270" text-anchor="middle">not a nice-to-have — day one</text>
+
+  <line x1="330" y1="412" x2="330" y2="440" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- CI/CD -->
+  <rect x="220" y="444" width="220" height="26" rx="4" fill="#faf9f6" stroke="#6b7280" stroke-width="1.4" stroke-dasharray="3 2"/>
+  <text x="330" y="461" font-size="10.5" fill="#4b5160" text-anchor="middle" font-weight="600">CI/CD — constrained by the zone above it</text>
+
+</svg>

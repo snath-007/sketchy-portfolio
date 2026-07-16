@@ -1,3 +1,16 @@
+.cardLink {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardLink:focus-visible {
+  border-radius: var(--radius-lg);
+  outline: 2px solid var(--color-ink);
+  outline-offset: 5px;
+}
+
 .card,
 .featuredCard {
   display: flex;
@@ -68,4 +81,46 @@
 
 .link:hover svg {
   transform: translateX(4px);
+}
+.cardLink:hover .link {
+  border-color: var(--color-accent);
+  color: var(--color-muted);
+}
+
+.cardLink:hover .link svg {
+  transform: translateX(4px);
+}
+
+/* Application-wide responsive pass */
+@media (max-width: 1600px) {
+  .card,
+  .featuredCard {
+    min-height: 220px;
+  }
+  .featuredCard {
+    min-height: 260px;
+    padding: 1.5rem;
+  }
+  .title {
+    font-size: clamp(1.55rem, 2.5vw, 2rem);
+  }
+  .card .title {
+    font-size: clamp(1.35rem, 2vw, 1.7rem);
+  }
+}
+@media (max-width: 760px) {
+  .card,
+  .featuredCard {
+    min-height: 210px;
+  }
+  .featuredCard {
+    padding: 1.15rem;
+  }
+  .content {
+    gap: 0.7rem;
+  }
+  .summary {
+    font-size: 0.88rem;
+    line-height: 1.62;
+  }
 }

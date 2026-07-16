@@ -1,0 +1,61 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'SF Mono', Menlo, monospace">
+  <rect x="0" y="0" width="900" height="420" fill="#faf9f6"/>
+
+  <text x="450" y="30" font-size="14" fill="#1c1f26" text-anchor="middle" letter-spacing="1" font-weight="700">DESIGN THE STOP CONDITIONS FIRST</text>
+  <text x="450" y="48" font-size="10" fill="#8891a3" text-anchor="middle">defined before the system runs a single real task — not discovered after it doesn't stop</text>
+
+  <!-- 7 condition cards, 4 top row 3 bottom row -->
+  <g>
+    <rect x="30" y="76" width="200" height="90" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="130" y="100" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Maximum steps</text>
+    <text x="130" y="122" font-size="8.5" fill="#5b6270" text-anchor="middle">upper bound regardless</text>
+    <text x="130" y="136" font-size="8.5" fill="#5b6270" text-anchor="middle">of &quot;making progress&quot;</text>
+  </g>
+
+  <g>
+    <rect x="245" y="76" width="200" height="90" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="345" y="100" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Time &amp; token budgets</text>
+    <text x="345" y="122" font-size="8.5" fill="#5b6270" text-anchor="middle">both — a system can blow</text>
+    <text x="345" y="136" font-size="8.5" fill="#5b6270" text-anchor="middle">through one without the other</text>
+  </g>
+
+  <g>
+    <rect x="460" y="76" width="200" height="90" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="560" y="100" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Retry policy</text>
+    <text x="560" y="122" font-size="8.5" fill="#5b6270" text-anchor="middle">same failure again, or</text>
+    <text x="560" y="136" font-size="8.5" fill="#5b6270" text-anchor="middle">genuine new progress?</text>
+  </g>
+
+  <g>
+    <rect x="675" y="76" width="200" height="90" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="775" y="100" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Duplicate-action</text>
+    <text x="775" y="116" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">protection</text>
+    <text x="775" y="138" font-size="8.5" fill="#5b6270" text-anchor="middle">already called with these args?</text>
+  </g>
+
+  <g>
+    <rect x="90" y="192" width="220" height="90" rx="6" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+    <text x="200" y="216" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Success criteria</text>
+    <text x="200" y="238" font-size="8.5" fill="#5b6270" text-anchor="middle">stated concretely enough to</text>
+    <text x="200" y="252" font-size="8.5" fill="#5b6270" text-anchor="middle">check, not an implicit judgment</text>
+  </g>
+
+  <g>
+    <rect x="335" y="192" width="220" height="90" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="445" y="216" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Escalation</text>
+    <text x="445" y="238" font-size="8.5" fill="#5b6270" text-anchor="middle">explicit path to a human when</text>
+    <text x="445" y="252" font-size="8.5" fill="#5b6270" text-anchor="middle">stuck or over a risk threshold</text>
+  </g>
+
+  <g>
+    <rect x="580" y="192" width="220" height="90" rx="6" fill="#ffffff" stroke="#8a3a2a" stroke-width="1.8"/>
+    <text x="690" y="216" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Safe termination</text>
+    <text x="690" y="238" font-size="8.5" fill="#8a3a2a" font-style="italic" text-anchor="middle">mid-transaction is not</text>
+    <text x="690" y="252" font-size="8.5" fill="#8a3a2a" font-style="italic" text-anchor="middle">a safe place to stop</text>
+  </g>
+
+  <!-- Evaluation band -->
+  <rect x="90" y="316" width="710" height="70" rx="6" fill="#1c1f26"/>
+  <text x="445" y="344" font-size="11.5" fill="#faf9f6" text-anchor="middle" font-weight="700">EVALUATE FULL TRAJECTORIES, NOT JUST FINAL PROSE</text>
+  <text x="445" y="364" font-size="9.5" fill="#a9b0bf" text-anchor="middle">against simulated failures and adversarial tool outputs — a correct-looking ending can still be a system that got lucky</text>
+</svg>

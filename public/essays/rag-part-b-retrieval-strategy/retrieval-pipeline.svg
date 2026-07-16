@@ -1,0 +1,77 @@
+<svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'SF Mono', Menlo, monospace">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3b4252"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="460" fill="#faf9f6"/>
+
+  <text x="450" y="28" font-size="14" fill="#1c1f26" text-anchor="middle" letter-spacing="1" font-weight="700">A PRODUCTION RETRIEVAL PATH</text>
+  <text x="450" y="45" font-size="10" fill="#8891a3" text-anchor="middle">each stage exposes its own score and timing — not one opaque number at the end</text>
+
+  <!-- Stage row 1 -->
+  <g>
+    <rect x="20" y="70" width="140" height="58" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="90" y="94" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">User Question</text>
+    <text x="90" y="110" font-size="8.5" fill="#8891a3" text-anchor="middle">raw input</text>
+  </g>
+  <line x1="160" y1="99" x2="192" y2="99" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="196" y="70" width="140" height="58" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="266" y="94" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Rewrite / Route</text>
+    <text x="266" y="110" font-size="8.5" fill="#8891a3" text-anchor="middle">resolve ambiguity first</text>
+  </g>
+  <line x1="336" y1="99" x2="368" y2="99" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="372" y="70" width="160" height="58" rx="4" fill="#ffffff" stroke="#8a3a2a" stroke-width="2"/>
+    <text x="452" y="90" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">ACL &amp; Metadata Filter</text>
+    <text x="452" y="106" font-size="8.5" fill="#8a3a2a" text-anchor="middle" font-weight="700">mandatory — runs first</text>
+    <text x="452" y="118" font-size="8.5" fill="#8891a3" text-anchor="middle">not a post-filter</text>
+  </g>
+  <line x1="532" y1="99" x2="564" y2="99" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="568" y="70" width="150" height="58" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="643" y="94" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Hybrid Retrieval</text>
+    <text x="643" y="110" font-size="8.5" fill="#8891a3" text-anchor="middle">semantic + lexical, fused</text>
+  </g>
+  <line x1="718" y1="99" x2="750" y2="99" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+  <line x1="750" y1="99" x2="750" y2="160" stroke="#3b4252" stroke-width="1.6"/>
+  <line x1="750" y1="160" x2="620" y2="160" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- Stage row 2, right to left -->
+  <g>
+    <rect x="450" y="192" width="150" height="58" rx="4" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+    <text x="525" y="216" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Reranker</text>
+    <text x="525" y="232" font-size="8.5" fill="#8891a3" text-anchor="middle">retrieve broad, rerank narrow</text>
+  </g>
+  <line x1="450" y1="221" x2="418" y2="221" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="248" y="192" width="170" height="58" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="333" y="212" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Deduplicate</text>
+    <text x="333" y="226" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">&amp; Expand</text>
+    <text x="333" y="242" font-size="8.5" fill="#8891a3" text-anchor="middle">collapse near-dupes, add parent context</text>
+  </g>
+  <line x1="248" y1="221" x2="216" y2="221" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="46" y="192" width="170" height="58" rx="4" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="131" y="216" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Context Packing</text>
+    <text x="131" y="232" font-size="8.5" fill="#8891a3" text-anchor="middle">order, boundaries, citations</text>
+  </g>
+  <line x1="131" y1="250" x2="131" y2="282" stroke="#3b4252" stroke-width="1.6"/>
+  <line x1="131" y1="282" x2="740" y2="282" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- Final stage -->
+  <g>
+    <rect x="640" y="254" width="200" height="58" rx="4" fill="#1c1f26"/>
+    <text x="740" y="278" font-size="11.5" fill="#faf9f6" text-anchor="middle" font-weight="700">LLM with Citations</text>
+    <text x="740" y="294" font-size="8.5" fill="#a9b0bf" text-anchor="middle">generation happens last</text>
+  </g>
+
+  <text x="450" y="360" font-size="10.5" fill="#5b6270" text-anchor="middle" font-weight="700">By the time generation happens, most of what determines trustworthiness has already occurred.</text>
+  <text x="450" y="380" font-size="9.5" fill="#8891a3" text-anchor="middle" font-style="italic">Filtering, fusion, reranking, dedup, and packing all run before the model sees anything.</text>
+</svg>

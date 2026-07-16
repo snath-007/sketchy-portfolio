@@ -2,3 +2,15 @@
   width: min(1280px, calc(100% - 3rem));
   margin-inline: auto;
 }
+
+/* Application-wide responsive pass */
+@media (max-width: 760px) {
+  .container {
+    width: calc(100% - 2rem);
+  }
+}
+@media (max-width: 430px) {
+  .container {
+    width: calc(100% - 1.25rem);
+  }
+}

@@ -1,0 +1,58 @@
+.figure {
+  margin: 1.5rem 0 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-paper-soft);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  overflow-x: auto;
+}
+.figure figcaption {
+  margin-bottom: 1rem;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.diagram {
+  display: grid;
+  min-height: 160px;
+  place-items: center;
+}
+.diagram:empty::after {
+  content: "Drawing the architecture...";
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+.diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+.fallback {
+  white-space: pre-wrap;
+  color: var(--color-ink);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 1600px) {
+  .figure {
+    margin-top: 1.25rem;
+    padding: 1.1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .figure {
+    margin-top: 1rem;
+    padding: 0.75rem;
+  }
+
+  .figure figcaption {
+    margin-bottom: 0.75rem;
+    font-size: 0.66rem;
+  }
+
+  .diagram {
+    min-height: 120px;
+  }
+}
