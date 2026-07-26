@@ -1,13 +1,14 @@
 .badge {
   display: inline-flex;
   width: fit-content;
-  border: 1px solid var(--color-border-strong);
+  border: 1px solid color-mix(in srgb, #5b7cfa 42%, var(--color-border));
   border-radius: var(--radius-sm);
   padding: 0.25rem 0.5rem;
-  background: var(--color-chip-bg);
+  background: color-mix(in srgb, #5b7cfa 18%, var(--color-paper-soft));
   color: var(--color-ink);
+  box-shadow: 0 4px 12px color-mix(in srgb, #5b7cfa 8%, transparent);
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }

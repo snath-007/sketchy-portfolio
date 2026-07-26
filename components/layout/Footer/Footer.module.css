@@ -46,3 +46,18 @@
     justify-content: flex-start;
   }
 }
+
+/* Immersive page ending */
+.footer {
+  border-color: rgba(179, 202, 239, 0.22);
+  color: rgba(248, 243, 232, 0.62);
+  background: #071426;
+}
+
+.note,
+.socials a {
+  color: #f8f3e8;
+}
+.socials a:hover {
+  color: #c8f36b;
+}

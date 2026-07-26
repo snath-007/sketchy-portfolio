@@ -20,3 +20,17 @@
     0 22px 44px var(--color-shadow),
     0 2px 0 color-mix(in srgb, var(--color-ink) 5%, transparent);
 }
+
+/* Tintable portfolio surface */
+.card {
+  background: var(--card-surface, var(--color-paper-soft));
+  box-shadow:
+    0 18px 44px
+    color-mix(in srgb, var(--card-shadow, var(--color-shadow)) 70%, transparent),
+    0 2px 0 color-mix(in srgb, var(--color-ink) 4%, transparent);
+}
+
+/* Dark-mode typography assurance */
+html[data-theme="dark"] .card {
+  color: var(--color-ink);
+}

@@ -96,3 +96,42 @@
     display: none;
   }
 }
+
+/* Immersive color surface */
+.section {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-lilac-soft) 45%, var(--color-paper)) 0%,
+    var(--color-navy) 100%
+  );
+}
+
+.card {
+  border-color: rgba(179, 202, 239, 0.28);
+  color: #f8f3e8;
+  background:
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(78, 124, 255, 0.28),
+      transparent 32%
+    ), linear-gradient(rgba(248, 243, 232, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(248, 243, 232, 0.04) 1px, transparent 1px),
+    #071426;
+  background-size:
+    auto,
+    24px 24px,
+    24px 24px,
+    auto;
+  box-shadow: 0 24px 70px rgba(3, 12, 26, 0.28);
+}
+
+.card p {
+  color: rgba(248, 243, 232, 0.7);
+}
+.card a {
+  color: var(--color-paper-soft);
+  background: var(--color-ink);
+}
+.note {
+  color: #c8f36b;
+}

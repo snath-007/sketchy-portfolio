@@ -52,3 +52,53 @@ select {
   background: var(--color-accent);
   color: var(--color-ink);
 }
+
+/* Atmospheric application canvas */
+body {
+  background:
+    radial-gradient(
+      circle at 92% 14%,
+      color-mix(in srgb, var(--color-blue-soft) 58%, transparent),
+      transparent 29rem
+    ),
+    radial-gradient(
+      circle at -8% 46%,
+      color-mix(in srgb, var(--color-peach-soft) 54%, transparent),
+      transparent 34rem
+    ),
+    radial-gradient(
+      circle at 105% 78%,
+      color-mix(in srgb, var(--color-lime-soft) 52%, transparent),
+      transparent 32rem
+    ),
+    linear-gradient(
+      color-mix(in srgb, var(--color-ink) 2.2%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-ink) 1.8%, transparent) 1px,
+      transparent 1px
+    ), var(--color-paper);
+  background-attachment: fixed;
+  background-size:
+    auto,
+    auto,
+    auto,
+    34px 34px,
+    34px 34px,
+    auto;
+}
+
+/* Theme contrast contract */
+:root {
+  color-scheme: light;
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html[data-theme="dark"] body {
+  color: var(--color-ink);
+  text-shadow: 0 0 1px rgba(248, 243, 232, 0.02);
+}
