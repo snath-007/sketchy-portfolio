@@ -155,3 +155,60 @@
     font-size: clamp(2.05rem, 11vw, 2.55rem);
   }
 }
+
+/* Atmospheric route canvas */
+.page {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      circle at 94% 8%,
+      color-mix(in srgb, var(--color-blue-soft) 72%, transparent),
+      transparent 30rem
+    ),
+    radial-gradient(
+      circle at 2% 68%,
+      color-mix(in srgb, var(--color-peach-soft) 58%, transparent),
+      transparent 32rem
+    ),
+    linear-gradient(
+      180deg,
+      transparent,
+      color-mix(in srgb, var(--color-lilac-soft) 30%, transparent)
+    );
+}
+
+.workGrid > :nth-child(3n + 1) {
+  --card-surface: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-blue-soft) 84%, var(--color-paper-soft)),
+    var(--color-paper-soft)
+  );
+}
+.workGrid > :nth-child(3n + 2) {
+  --card-surface: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-peach-soft) 82%, var(--color-paper-soft)),
+    var(--color-paper-soft)
+  );
+}
+.workGrid > :nth-child(3n + 3) {
+  --card-surface: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-lime-soft) 82%, var(--color-paper-soft)),
+    var(--color-paper-soft)
+  );
+}
+.labGrid {
+  --card-surface: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-lilac-soft) 82%, var(--color-paper-soft)),
+    color-mix(in srgb, var(--color-peach-soft) 46%, var(--color-paper-soft))
+  );
+}
+
+/* Dark-mode typography assurance */
+html[data-theme="dark"] .tabs span {
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-paper-soft) 82%, transparent);
+}

@@ -124,3 +124,30 @@
     line-height: 1.62;
   }
 }
+
+/* Work card color identity */
+.card,
+.featuredCard {
+  --card-surface: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-blue-soft) 84%, var(--color-paper-soft)),
+    color-mix(in srgb, var(--color-lilac-soft) 52%, var(--color-paper-soft))
+  );
+  --card-shadow: color-mix(in srgb, #4e7cff 25%, var(--color-shadow));
+  overflow: hidden;
+}
+
+.card::after,
+.featuredCard::after {
+  position: absolute;
+  right: -60px;
+  bottom: -90px;
+  width: 220px;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, #4e7cff 24%, transparent);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 30px color-mix(in srgb, #4e7cff 5%, transparent),
+    0 0 0 65px color-mix(in srgb, #4e7cff 4%, transparent);
+  content: "";
+}

@@ -13,11 +13,10 @@ const themeScript = `
 (function () {
   try {
     var stored = window.localStorage.getItem("theme");
-    var preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    var theme = stored === "light" || stored === "dark" ? stored : preferred;
+    var theme = stored === "light" || stored === "dark" ? stored : "dark";
     document.documentElement.dataset.theme = theme;
   } catch (error) {
-    document.documentElement.dataset.theme = "light";
+    document.documentElement.dataset.theme = "dark";
   }
 })();
 `;
@@ -31,7 +30,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Inline theme script prevents a light/dark flash before hydration. */}
-        `n <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
         <Navbar />

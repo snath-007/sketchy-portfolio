@@ -35,3 +35,30 @@
     max-width: none;
   }
 }
+
+/* Immersive color surface */
+.section {
+  background:
+    radial-gradient(
+      circle at 88% 28%,
+      color-mix(in srgb, var(--color-blue-soft) 82%, transparent),
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-lilac-soft) 48%, var(--color-paper)),
+      var(--color-paper) 58%
+    );
+}
+
+.sectionLink {
+  border: 1px solid color-mix(in srgb, var(--color-ink) 16%, transparent);
+  border-radius: 999px;
+  padding: 0.48rem 0.72rem;
+  background: color-mix(in srgb, var(--color-paper-soft) 64%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.grid {
+  max-width: 900px;
+}

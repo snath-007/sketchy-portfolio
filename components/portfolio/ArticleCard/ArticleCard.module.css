@@ -115,3 +115,44 @@
     font-size: 0.84rem;
   }
 }
+
+/* Essay tile color rhythm */
+.card {
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
+  border-radius: 14px;
+  padding: 1.15rem 1.25rem;
+  background: var(
+    --article-surface,
+    color-mix(in srgb, var(--color-paper-soft) 80%, transparent)
+  );
+  box-shadow: 0 10px 28px var(--color-shadow-soft);
+}
+
+.cardLink:nth-child(3n + 1) {
+  --article-surface: color-mix(
+    in srgb,
+    var(--color-blue-soft) 72%,
+    var(--color-paper-soft)
+  );
+}
+.cardLink:nth-child(3n + 2) {
+  --article-surface: color-mix(
+    in srgb,
+    var(--color-peach-soft) 72%,
+    var(--color-paper-soft)
+  );
+}
+.cardLink:nth-child(3n + 3) {
+  --article-surface: color-mix(
+    in srgb,
+    var(--color-lime-soft) 72%,
+    var(--color-paper-soft)
+  );
+}
+
+.card:hover {
+  padding-right: 1.55rem;
+  padding-left: 1.55rem;
+  border-color: color-mix(in srgb, #4e7cff 38%, var(--color-border));
+}

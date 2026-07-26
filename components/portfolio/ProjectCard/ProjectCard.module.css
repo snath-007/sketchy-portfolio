@@ -90,3 +90,25 @@
     gap: 0.7rem;
   }
 }
+
+/* Lab card color identity */
+.card {
+  --card-surface: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-peach-soft) 88%, var(--color-paper-soft)),
+    color-mix(in srgb, var(--color-lime-soft) 55%, var(--color-paper-soft))
+  );
+  --card-shadow: color-mix(in srgb, #e68b3d 24%, var(--color-shadow));
+  overflow: hidden;
+}
+
+.card::after {
+  position: absolute;
+  right: -48px;
+  top: -72px;
+  width: 190px;
+  aspect-ratio: 1;
+  border: 1px dashed color-mix(in srgb, #e68b3d 34%, transparent);
+  border-radius: 50%;
+  content: "";
+}

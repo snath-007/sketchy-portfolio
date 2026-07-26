@@ -450,3 +450,83 @@
     margin-top: 2rem;
   }
 }
+
+/* Atmospheric route canvas */
+.page {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      circle at 96% 4%,
+      color-mix(in srgb, var(--color-blue-soft) 68%, transparent),
+      transparent 30rem
+    ),
+    radial-gradient(
+      circle at 0 58%,
+      color-mix(in srgb, var(--color-peach-soft) 52%, transparent),
+      transparent 30rem
+    ),
+    linear-gradient(
+      180deg,
+      transparent,
+      color-mix(in srgb, var(--color-lime-soft) 24%, transparent)
+    );
+}
+
+.metaCard {
+  background:
+    linear-gradient(rgba(32, 31, 27, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 31, 27, 0.03) 1px, transparent 1px),
+    color-mix(in srgb, var(--color-blue-soft) 72%, var(--color-paper-soft));
+  background-size: 24px 24px;
+}
+
+.noteCard {
+  background:
+    linear-gradient(rgba(32, 31, 27, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 31, 27, 0.03) 1px, transparent 1px),
+    color-mix(in srgb, var(--color-peach-soft) 68%, var(--color-paper-soft));
+  background-size: 24px 24px;
+}
+
+.workflowStep:nth-child(3n + 1) {
+  background: color-mix(
+    in srgb,
+    var(--color-blue-soft) 64%,
+    var(--color-paper-soft)
+  );
+}
+.workflowStep:nth-child(3n + 2) {
+  background: color-mix(
+    in srgb,
+    var(--color-peach-soft) 64%,
+    var(--color-paper-soft)
+  );
+}
+.workflowStep:nth-child(3n + 3) {
+  background: color-mix(
+    in srgb,
+    var(--color-lime-soft) 64%,
+    var(--color-paper-soft)
+  );
+}
+.articleNote {
+  background: color-mix(
+    in srgb,
+    var(--color-lilac-soft) 58%,
+    var(--color-paper-soft)
+  );
+}
+
+/* Dark-mode typography assurance */
+html[data-theme="dark"] .metaCard,
+html[data-theme="dark"] .noteCard,
+html[data-theme="dark"] .workflowStep,
+html[data-theme="dark"] .articleNote {
+  color: var(--color-ink);
+}
+
+html[data-theme="dark"] .tag {
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-paper-soft) 84%, transparent);
+}
