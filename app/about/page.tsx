@@ -5,9 +5,16 @@ import Button from "@/components/ui/Button/Button";
 import styles from "./AboutPage.module.css";
 
 export const metadata = {
-  title: "About | Soumen Nath",
+  title: "About",
   description:
-    "An interactive illustrated journey through Soumen Nath's schools, teaching years, adventures, and software engineering career.",
+    "The personal and professional journey of Soumen Nath, from Silchar and Guwahati to building software and AI systems in Bangalore.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    url: "/about",
+    title: "About",
+    description:
+      "The personal and professional journey of Soumen Nath, from Silchar and Guwahati to building software and AI systems in Bangalore.",
+  },
 };
 
 export default function AboutPage() {

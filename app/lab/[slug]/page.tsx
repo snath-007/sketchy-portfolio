@@ -1,4 +1,5 @@
 import { ArrowLeft } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Container from "@/components/layout/Container/Container";
@@ -13,13 +14,29 @@ export function generateStaticParams() {
   return labSeed.map((project) => ({ slug: project.slug }));
 }
 
-export async function generateMetadata({ params }: LabDetailPageProps) {
+export async function generateMetadata({
+  params,
+}: LabDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = labSeed.find((item) => item.slug === slug);
-
+  if (!project)
+    return { title: "Lab", robots: { index: false, follow: false } };
+  const path = `/lab/${project.slug}`;
   return {
-    title: project ? `${project.title} | Lab` : "Lab",
-    description: project?.summary,
+    title: project.title,
+    description: project.summary,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "article",
+      url: path,
+      title: project.title,
+      description: project.summary,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description: project.summary,
+    },
   };
 }
 
