@@ -61,3 +61,91 @@
 .socials a:hover {
   color: #c8f36b;
 }
+/* Responsive footer rhythm and touch targets */
+@media (min-width: 1800px) {
+  .footer {
+    padding: 1.65rem 0;
+  }
+
+  .inner {
+    font-size: 0.82rem;
+  }
+}
+
+.socials a {
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(248, 243, 232, 0.14);
+  border-radius: 50%;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.socials a:hover {
+  border-color: rgba(200, 243, 107, 0.52);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 1.8rem 0;
+  }
+
+  .inner {
+    justify-items: center;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .socials {
+    justify-content: center;
+  }
+
+  .socials a {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (hover: none) {
+  .socials a:hover {
+    transform: none;
+  }
+}
+/* Light-mode page ending */
+html[data-theme="light"] .footer {
+  border-color: color-mix(in srgb, #41608f 20%, var(--color-border));
+  color: rgba(27, 39, 57, 0.66);
+  background:
+    radial-gradient(
+      circle at 82% 20%,
+      rgba(78, 124, 255, 0.14),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-blue-soft) 58%, var(--color-paper-soft)),
+      color-mix(in srgb, var(--color-lilac-soft) 52%, var(--color-paper-soft))
+    );
+}
+
+html[data-theme="light"] .note,
+html[data-theme="light"] .socials a {
+  color: #1b2739;
+}
+
+html[data-theme="light"] .socials a {
+  border-color: rgba(27, 39, 57, 0.16);
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow: 0 6px 18px rgba(48, 66, 95, 0.1);
+}
+
+html[data-theme="light"] .socials a:hover {
+  border-color: rgba(49, 93, 159, 0.48);
+  color: #315d9f;
+  background: rgba(255, 255, 255, 0.78);
+}

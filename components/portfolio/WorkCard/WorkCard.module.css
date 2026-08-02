@@ -151,3 +151,51 @@
     0 0 0 65px color-mix(in srgb, #4e7cff 4%, transparent);
   content: "";
 }
+@media (min-width: 1800px) {
+  .featuredCard {
+    min-height: 330px;
+    padding: 2.2rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .summary {
+    max-width: 48rem;
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card,
+  .featuredCard {
+    min-height: 220px;
+  }
+
+  .featuredCard {
+    padding: 1rem;
+  }
+
+  .title,
+  .card .title {
+    font-size: 1.42rem;
+  }
+
+  .summary {
+    font-size: 0.84rem;
+    line-height: 1.58;
+  }
+
+  .link {
+    min-height: 40px;
+    align-items: center;
+  }
+}
+
+@media (hover: none) {
+  .cardLink:hover .link svg,
+  .link:hover svg {
+    transform: none;
+  }
+}

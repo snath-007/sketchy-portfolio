@@ -4,9 +4,16 @@ import ProjectCard from "@/components/portfolio/ProjectCard/ProjectCard";
 import { labSeed } from "@/content/seed/lab.seed";
 
 export const metadata = {
-  title: "Lab | Soumen Nath",
+  title: "Lab",
   description:
-    "Personal experiments, side projects, and technical playgrounds.",
+    "Applied AI experiments and product prototypes exploring revenue workflows, automation, and reliable engineering systems.",
+  alternates: { canonical: "/lab" },
+  openGraph: {
+    url: "/lab",
+    title: "Lab",
+    description:
+      "Applied AI experiments and product prototypes exploring revenue workflows, automation, and reliable engineering systems.",
+  },
 };
 
 export default function LabPage() {

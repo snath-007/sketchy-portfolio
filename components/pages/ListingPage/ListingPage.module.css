@@ -212,3 +212,61 @@ html[data-theme="dark"] .tabs span {
   color: var(--color-ink);
   background: color-mix(in srgb, var(--color-paper-soft) 82%, transparent);
 }
+@media (min-width: 1800px) {
+  .page {
+    padding-top: 1.75rem;
+    padding-bottom: 6.5rem;
+  }
+
+  .hero {
+    margin-bottom: 4.5rem;
+  }
+
+  .title {
+    max-width: 900px;
+    font-size: 5rem;
+  }
+
+  .description {
+    max-width: 600px;
+    font-size: 1.03rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding-top: 0.75rem;
+  }
+
+  .issueBar {
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero {
+    margin-bottom: 1.8rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.62;
+  }
+
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.55rem;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabs span {
+    flex: 0 0 auto;
+    min-height: 36px;
+    align-content: center;
+  }
+}

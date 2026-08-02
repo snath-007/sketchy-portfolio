@@ -1,4 +1,5 @@
 import { ArrowLeft } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import MermaidDiagram from "@/components/essays/MermaidDiagram/MermaidDiagram";
@@ -6,6 +7,7 @@ import RichText from "@/components/essays/RichText/RichText";
 import Container from "@/components/layout/Container/Container";
 import styles from "@/components/pages/DetailPage/DetailPage.module.css";
 import { publishedEssays } from "@/content/seed/essays.seed";
+import { toIsoDate } from "@/lib/seo";
 
 interface EssayDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -15,13 +17,31 @@ export function generateStaticParams() {
   return publishedEssays.map((article) => ({ slug: article.slug }));
 }
 
-export async function generateMetadata({ params }: EssayDetailPageProps) {
+export async function generateMetadata({
+  params,
+}: EssayDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const article = publishedEssays.find((item) => item.slug === slug);
-
+  if (!article)
+    return { title: "Essays", robots: { index: false, follow: false } };
+  const path = `/essays/${article.slug}`;
   return {
-    title: article ? `${article.title} | Essays` : "Essays",
-    description: article?.summary,
+    title: article.title,
+    description: article.summary,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "article",
+      url: path,
+      title: article.title,
+      description: article.summary,
+      publishedTime: toIsoDate(article.publishedAt),
+      authors: ["Soumen Nath"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.summary,
+    },
   };
 }
 

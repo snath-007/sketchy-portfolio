@@ -1,0 +1,588 @@
+.deckShell {
+  --deck-canvas-width: min(1400px, calc(100vw - 2rem));
+  --deck-height: clamp(440px, 40vw, 540px);
+  --deck-card-width: clamp(300px, 28vw, 370px);
+  --deck-card-height: 340px;
+
+  position: relative;
+  isolation: isolate;
+  width: var(--deck-canvas-width);
+  margin-top: clamp(1rem, 3vw, 2rem);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.viewport {
+  position: relative;
+  height: var(--deck-height);
+  overflow: hidden;
+  perspective: 1100px;
+  perspective-origin: 50% 42%;
+  cursor: grab;
+  outline: none;
+  touch-action: pan-y;
+}
+
+.viewport:focus-visible {
+  border-radius: 24px;
+  outline: 2px dashed var(--color-ink);
+  outline-offset: 5px;
+}
+
+.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.table {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  width: min(96%, 960px);
+  height: 38%;
+  border: 1px dashed color-mix(in srgb, var(--color-ink) 25%, transparent);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--color-paper-soft) 48%, transparent),
+    transparent 68%
+  );
+  box-shadow: 0 42px 75px
+    color-mix(in srgb, var(--color-shadow) 34%, transparent);
+  transform: translateX(-50%) rotateX(67deg);
+  transform-origin: center;
+}
+
+.table::before,
+.table::after {
+  position: absolute;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 9%, transparent);
+  border-radius: inherit;
+  content: "";
+  inset: 13%;
+}
+
+.table::after {
+  border-style: dashed;
+  inset: 28%;
+}
+
+.card {
+  position: absolute;
+  top: 8%;
+  left: var(--card-left);
+  z-index: var(--card-order);
+  display: block;
+  width: var(--deck-card-width);
+  min-height: var(--deck-card-height);
+  color: var(--color-ink);
+  opacity: var(--card-opacity);
+  transform: translateX(calc(-50% + var(--deck-drag, 0px)))
+    translateY(var(--card-lift)) translateZ(var(--card-depth))
+    rotateY(var(--card-rotate)) scale(var(--card-scale));
+  transform-origin: center bottom;
+  transform-style: preserve-3d;
+  transition:
+    left 680ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 420ms ease,
+    transform 680ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 420ms ease;
+}
+
+.card article {
+  position: relative;
+  display: flex;
+  min-height: var(--deck-card-height);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 17%, transparent);
+  border-radius: 18px 15px 20px 14px;
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--color-ink) 3%, transparent) 1px,
+      transparent 1px
+    ), var(--deck-card-surface);
+  background-size:
+    100% 25px,
+    auto;
+  padding: clamp(1.15rem, 2.3vw, 1.5rem);
+  box-shadow:
+    0 28px 54px color-mix(in srgb, var(--color-shadow) 76%, transparent),
+    0 2px 0 color-mix(in srgb, white 34%, transparent) inset;
+}
+
+.card article::before {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 78px;
+  height: 25px;
+  background: color-mix(in srgb, var(--color-tape-mid) 74%, transparent);
+  box-shadow: 0 2px 6px var(--color-shadow-soft);
+  content: "";
+  transform: translateX(-50%) rotate(-1.5deg);
+}
+
+.card[data-accent="0"] {
+  --deck-card-surface: color-mix(
+    in srgb,
+    var(--color-blue-soft) 76%,
+    var(--color-paper-soft)
+  );
+}
+
+.card[data-accent="1"] {
+  --deck-card-surface: color-mix(
+    in srgb,
+    var(--color-peach-soft) 74%,
+    var(--color-paper-soft)
+  );
+}
+
+.card[data-accent="2"] {
+  --deck-card-surface: color-mix(
+    in srgb,
+    var(--color-lime-soft) 74%,
+    var(--color-paper-soft)
+  );
+}
+
+.card[data-accent="3"] {
+  --deck-card-surface: color-mix(
+    in srgb,
+    var(--color-lilac-soft) 74%,
+    var(--color-paper-soft)
+  );
+}
+
+.sideIndicator {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  border: 1px solid
+    color-mix(in srgb, var(--cue-color, var(--color-ink)) 42%, transparent);
+  border-radius: 999px;
+  padding: 7px 8px;
+  background: color-mix(
+    in srgb,
+    var(--cue-color, var(--color-ink)) 12%,
+    var(--color-paper-soft)
+  );
+  box-shadow:
+    0 5px 16px var(--color-shadow-soft),
+    0 0 18px
+    color-mix(in srgb, var(--cue-color, var(--color-ink)) 22%, transparent);
+  opacity: 0.72;
+  transform: translateY(-50%);
+  backdrop-filter: blur(7px);
+  transition: opacity 180ms ease;
+}
+
+.sideIndicator[data-side="left"] {
+  --cue-color: #e68b3d;
+
+  right: 10px;
+}
+
+.sideIndicator[data-side="right"] {
+  --cue-color: #4e7cff;
+
+  left: 10px;
+  flex-direction: row-reverse;
+}
+
+.sideIndicator > span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cue-color);
+  box-shadow: 0 0 7px color-mix(in srgb, var(--cue-color) 68%, transparent);
+  opacity: 0.18;
+  animation: sideDotCue 1.55s ease-in-out infinite;
+}
+
+.sideIndicator > span:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.sideIndicator > span:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+.card:hover .sideIndicator {
+  opacity: 1;
+}
+
+@keyframes sideDotCue {
+  0%,
+  58%,
+  100% {
+    opacity: 0.18;
+    transform: scale(0.72);
+  }
+  24% {
+    opacity: 1;
+    filter: brightness(1.25);
+    box-shadow:
+      0 0 7px var(--cue-color),
+      0 0 16px color-mix(in srgb, var(--cue-color) 82%, transparent);
+    transform: scale(1.16);
+  }
+}
+
+.activeCard {
+  filter: saturate(1.08);
+}
+
+.activeCard:hover {
+  transform: translateX(calc(-50% + var(--deck-drag, 0px)))
+    translateY(calc(var(--card-lift) - 7px))
+    translateZ(calc(var(--card-depth) + 18px)) rotateY(var(--card-rotate))
+    scale(var(--card-scale));
+}
+
+.activeCard:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 5px;
+}
+
+.cardTopline,
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  color: var(--color-muted);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cardTopline {
+  border-bottom: 1px dashed
+    color-mix(in srgb, var(--color-ink) 22%, transparent);
+  padding: 0.6rem 0 0.8rem;
+}
+
+.cardCopy {
+  display: grid;
+  flex: 1;
+  align-content: center;
+  padding: 1.2rem 0;
+}
+
+.cardCopy h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.45rem, 2.5vw, 1.85rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.cardCopy p {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0.8rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.cardFooter {
+  border-top: 1px dashed color-mix(in srgb, var(--color-ink) 22%, transparent);
+  padding-top: 0.85rem;
+}
+
+.readCue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-ink);
+}
+
+.readCue svg {
+  transition: transform 180ms ease;
+}
+
+.activeCard:hover .readCue svg {
+  transform: translate(2px, -2px);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: -0.2rem;
+}
+
+.controls button {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 28%, transparent);
+  border-radius: 50%;
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-paper-soft) 70%, transparent);
+  box-shadow: 0 8px 24px var(--color-shadow-soft);
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.controls button:hover {
+  background: var(--color-paper-soft);
+  transform: translateY(-2px) rotate(-3deg);
+}
+
+.controls button:last-child:hover {
+  transform: translateY(-2px) rotate(3deg);
+}
+
+.controls button:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+.controls p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 76px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.controls p span {
+  color: var(--color-ink);
+}
+
+.controls p i {
+  width: 24px;
+  height: 1px;
+  background: var(--color-border-strong);
+}
+
+.hint {
+  margin: 0.65rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1600px) {
+  .deckShell {
+    --deck-canvas-width: min(1520px, calc(100vw - 6rem));
+    --deck-height: 580px;
+    --deck-card-width: 400px;
+    --deck-card-height: 370px;
+
+    margin-top: 2.4rem;
+  }
+
+  .viewport {
+    perspective: 1400px;
+  }
+
+  .table {
+    width: min(88%, 1180px);
+  }
+
+  .cardCopy h3 {
+    font-size: 2rem;
+  }
+
+  .cardCopy p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 2200px) {
+  .deckShell {
+    --deck-canvas-width: min(1680px, calc(100vw - 10rem));
+    --deck-height: 620px;
+    --deck-card-width: 420px;
+    --deck-card-height: 390px;
+  }
+}
+
+@media (min-width: 681px) and (max-width: 1024px) {
+  .deckShell {
+    --deck-canvas-width: calc(100vw - 1rem);
+    --deck-height: 460px;
+    --deck-card-width: min(38vw, 340px);
+    --deck-card-height: 325px;
+  }
+
+  .viewport {
+    perspective: 1000px;
+  }
+}
+
+@media (max-width: 680px) {
+  .deckShell {
+    --deck-canvas-width: 100vw;
+    --deck-height: 400px;
+    --deck-card-width: min(76vw, 300px);
+    --deck-card-height: 300px;
+
+    margin-top: 0.4rem;
+  }
+
+  .viewport {
+    perspective: 900px;
+    perspective-origin: 50% 40%;
+  }
+
+  .card {
+    top: 7%;
+  }
+
+  .card article {
+    padding: 1.05rem;
+  }
+
+  .cardCopy {
+    padding: 0.9rem 0;
+  }
+
+  .cardCopy h3 {
+    font-size: 1.38rem;
+    line-height: 1.08;
+  }
+
+  .cardCopy p {
+    margin-top: 0.65rem;
+    font-size: 0.8rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .cardTopline,
+  .cardFooter {
+    font-size: 0.6rem;
+  }
+
+  .table {
+    bottom: 3%;
+    width: 132%;
+  }
+
+  .controls {
+    gap: 1rem;
+    margin-top: 0.15rem;
+  }
+
+  .controls button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .hint {
+    max-width: 260px;
+    margin: 0.75rem auto 0;
+    font-size: 0.61rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 430px) {
+  .deckShell {
+    --deck-height: 372px;
+    --deck-card-width: min(78vw, 284px);
+    --deck-card-height: 282px;
+  }
+
+  .cardCopy h3 {
+    font-size: 1.27rem;
+  }
+
+  .sideIndicator {
+    padding: 6px 7px;
+  }
+}
+
+@media (hover: none) {
+  .activeCard:hover {
+    transform: translateX(calc(-50% + var(--deck-drag, 0px)))
+      translateY(var(--card-lift)) translateZ(var(--card-depth))
+      rotateY(var(--card-rotate)) scale(var(--card-scale));
+  }
+
+  .card:hover .sideIndicator {
+    opacity: 0.72;
+  }
+
+  .controls button:hover,
+  .controls button:last-child:hover {
+    background: color-mix(in srgb, var(--color-paper-soft) 70%, transparent);
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .readCue svg,
+  .controls button {
+    transition: none;
+  }
+
+  .sideIndicator > span {
+    opacity: 0.62;
+    transform: none;
+    animation: none;
+    box-shadow: 0 0 9px color-mix(in srgb, var(--cue-color) 72%, transparent);
+  }
+
+  .activeCard:hover {
+    transform: translateX(calc(-50% + var(--deck-drag, 0px)))
+      translateY(var(--card-lift)) translateZ(var(--card-depth))
+      rotateY(var(--card-rotate)) scale(var(--card-scale));
+  }
+}
+
+.dragging .card {
+  pointer-events: none;
+  transition: none;
+}
+
+@media (min-width: 1025px) {
+  .deckShell {
+    --deck-height: clamp(370px, 44svh, 500px);
+    --deck-card-height: clamp(290px, 34svh, 350px);
+
+    margin-top: clamp(0.75rem, 1.8svh, 1.5rem);
+  }
+}
+
+/* Keep the carousel controls clear of the 3D card envelope. */
+@media (min-width: 1025px) {
+  .deckShell {
+    --deck-height: clamp(360px, 40svh, 445px);
+    --deck-card-width: clamp(280px, 25vw, 340px);
+    --deck-card-height: clamp(275px, 30svh, 315px);
+  }
+
+  .card {
+    top: 4%;
+  }
+
+  .controls {
+    margin-top: 0.55rem;
+  }
+}

@@ -156,3 +156,46 @@
   padding-left: 1.55rem;
   border-color: color-mix(in srgb, #4e7cff 38%, var(--color-border));
 }
+@media (min-width: 1800px) {
+  .card {
+    grid-template-columns: 145px minmax(0, 1fr) 36px;
+    padding: 1.35rem 1.45rem;
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .summary {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .meta {
+    flex-wrap: wrap;
+  }
+
+  .summary {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+@media (hover: none) {
+  .card:hover {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .card:hover .link svg {
+    transform: none;
+  }
+}

@@ -4,8 +4,16 @@ import WorkCard from "@/components/portfolio/WorkCard/Workcard";
 import { workSeed } from "@/content/seed/work.seed";
 
 export const metadata = {
-  title: "Work | Soumen Nath",
-  description: "Selected engineering work and production systems.",
+  title: "Work",
+  description:
+    "Production AI systems, data platforms, connected products, and full-stack engineering case studies by Soumen Nath.",
+  alternates: { canonical: "/work" },
+  openGraph: {
+    url: "/work",
+    title: "Work",
+    description:
+      "Production AI systems, data platforms, connected products, and full-stack engineering case studies by Soumen Nath.",
+  },
 };
 
 export default function WorkPage() {

@@ -530,3 +530,45 @@ html[data-theme="dark"] .tag {
   color: var(--color-ink);
   background: color-mix(in srgb, var(--color-paper-soft) 84%, transparent);
 }
+@media (min-width: 1800px) {
+  .page {
+    padding-top: 1.75rem;
+    padding-bottom: 6.5rem;
+  }
+
+  .title {
+    max-width: 900px;
+    font-size: 4.3rem;
+  }
+
+  .articleBody > .title {
+    max-width: 1080px;
+  }
+
+  .articleBody > .description {
+    max-width: 940px;
+    font-size: 1.05rem;
+  }
+
+  .articleSection p,
+  .sectionBlock p:not(.sectionEyebrow) {
+    font-size: 1.02rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .workflowStep {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 0.85rem;
+  }
+
+  .metaCard,
+  .noteCard {
+    padding: 1rem;
+  }
+
+  .actionRow {
+    margin-top: 1.8rem;
+  }
+}

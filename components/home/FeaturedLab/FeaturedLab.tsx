@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import ProductTheatre from "@/components/home/ProductTheatre/ProductTheatre";
 import Container from "@/components/layout/Container/Container";
 import ProjectCard from "@/components/portfolio/ProjectCard/ProjectCard";
 import SectionHeader from "@/components/shared/SectionHeader/SectionHeader";
@@ -23,10 +24,13 @@ export default function FeaturedLab() {
           </Link>
         </div>
 
-        <div className={styles.grid}>
-          {featured.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+        <div className={styles.showcase}>
+          <div className={styles.grid}>
+            {featured.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+          <ProductTheatre variant="revflow" />
         </div>
       </Container>
     </section>
