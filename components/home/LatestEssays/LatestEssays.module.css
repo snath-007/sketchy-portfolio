@@ -81,3 +81,13 @@
     padding: 0.65rem 0.85rem;
   }
 }
+
+@media (min-width: 861px) {
+  .section {
+    display: grid;
+    min-height: calc(100svh - 4.25rem);
+    align-items: center;
+    padding: clamp(1.75rem, 3svh, 3rem) 0;
+    scroll-margin-top: 4.25rem;
+  }
+}

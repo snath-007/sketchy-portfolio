@@ -24,12 +24,14 @@
 }
 
 .heading h2 {
-  margin: 0;
+  margin: 0 0 1rem;
   font-family: var(--font-heading);
-  font-size: clamp(2.3rem, 4vw, 4.2rem);
+  font-size: clamp(2rem, 3.25vw, 3.35rem);
   font-weight: 500;
   line-height: 0.98;
   letter-spacing: -0.04em;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 .heading > span {
@@ -282,7 +284,7 @@
   }
 
   .heading h2 {
-    font-size: 4.55rem;
+    font-size: 3.65rem;
   }
 
   .grid {
@@ -305,7 +307,7 @@
   }
 
   .heading h2 {
-    font-size: clamp(2rem, 10vw, 2.75rem);
+    font-size: clamp(1.8rem, 8.5vw, 2.3rem);
   }
 
   .card {
@@ -322,5 +324,55 @@
   .card:nth-child(2):hover,
   .card:hover .visual {
     transform: none;
+  }
+}
+
+@media (min-width: 901px) {
+  .section {
+    display: grid;
+    min-height: auto;
+    align-items: start;
+    padding: clamp(3rem, 5svh, 4rem) 0;
+    scroll-margin-top: 4.25rem;
+  }
+
+  .heading {
+    margin-bottom: clamp(1.25rem, 2.8svh, 2.35rem);
+  }
+
+  .card {
+    min-height: clamp(320px, 42svh, 430px);
+  }
+}
+
+/* Keep the editorial headline as one continuous phrase. */
+.heading h2 {
+  white-space: nowrap;
+}
+
+@media (min-width: 901px) {
+  .heading {
+    grid-template-columns: minmax(120px, 0.45fr) max-content minmax(
+        160px,
+        0.55fr
+      );
+    gap: clamp(0.75rem, 2vw, 2rem);
+  }
+}
+
+@media (min-width: 581px) and (max-width: 900px) {
+  .heading {
+    grid-template-columns: minmax(100px, 0.35fr) max-content;
+  }
+
+  .heading h2 {
+    font-size: clamp(1.65rem, 3.5vw, 2rem);
+  }
+}
+
+@media (max-width: 580px) {
+  .heading h2 {
+    font-size: clamp(1.15rem, 5.5vw, 1.45rem);
+    letter-spacing: -0.035em;
   }
 }

@@ -560,3 +560,29 @@
   pointer-events: none;
   transition: none;
 }
+
+@media (min-width: 1025px) {
+  .deckShell {
+    --deck-height: clamp(370px, 44svh, 500px);
+    --deck-card-height: clamp(290px, 34svh, 350px);
+
+    margin-top: clamp(0.75rem, 1.8svh, 1.5rem);
+  }
+}
+
+/* Keep the carousel controls clear of the 3D card envelope. */
+@media (min-width: 1025px) {
+  .deckShell {
+    --deck-height: clamp(360px, 40svh, 445px);
+    --deck-card-width: clamp(280px, 25vw, 340px);
+    --deck-card-height: clamp(275px, 30svh, 315px);
+  }
+
+  .card {
+    top: 4%;
+  }
+
+  .controls {
+    margin-top: 0.55rem;
+  }
+}
