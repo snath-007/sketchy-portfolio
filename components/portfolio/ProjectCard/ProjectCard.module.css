@@ -112,3 +112,47 @@
   border-radius: 50%;
   content: "";
 }
+@media (min-width: 1800px) {
+  .card {
+    min-height: 290px;
+  }
+
+  .title {
+    font-size: 2.1rem;
+  }
+
+  .summary {
+    max-width: 48rem;
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    min-height: 220px;
+  }
+
+  .title {
+    font-size: 1.42rem;
+  }
+
+  .summary {
+    font-size: 0.84rem;
+    line-height: 1.58;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .link {
+    min-height: 40px;
+    align-items: center;
+  }
+}
+
+@media (hover: none) {
+  .link:hover svg {
+    transform: none;
+  }
+}

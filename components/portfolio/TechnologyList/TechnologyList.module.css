@@ -24,3 +24,8 @@
   --tech-chip-bg: color-mix(in srgb, #9a7ae8 16%, var(--color-paper-soft));
   --tech-chip-border: color-mix(in srgb, #9a7ae8 36%, var(--color-border));
 }
+@media (max-width: 480px) {
+  .list {
+    gap: 0.38rem;
+  }
+}

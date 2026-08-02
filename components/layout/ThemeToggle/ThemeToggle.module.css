@@ -51,3 +51,16 @@
     transition: none;
   }
 }
+@media (pointer: coarse) {
+  .toggle {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (hover: none) {
+  .toggle:hover,
+  .toggle:hover svg {
+    transform: none;
+  }
+}

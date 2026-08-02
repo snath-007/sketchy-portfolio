@@ -71,3 +71,33 @@
     font-size: clamp(1.45rem, 7vw, 1.85rem);
   }
 }
+@media (min-width: 1800px) {
+  .header {
+    grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr) auto;
+    margin-bottom: 3rem;
+  }
+
+  .header h2 {
+    font-size: 2.45rem;
+  }
+
+  .header p:not(.eyebrow) {
+    max-width: 580px;
+    font-size: 0.94rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    margin-bottom: 1.35rem;
+  }
+
+  .header h2 {
+    font-size: clamp(1.4rem, 7.2vw, 1.72rem);
+  }
+
+  .header p:not(.eyebrow) {
+    font-size: 0.83rem;
+    line-height: 1.58;
+  }
+}

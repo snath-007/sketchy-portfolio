@@ -276,3 +276,51 @@
       color-mix(in srgb, var(--color-lilac-soft) 44%, var(--color-paper)) 100%
     );
 }
+@media (min-width: 1800px) {
+  .section {
+    padding: 7.5rem 0;
+  }
+
+  .heading h2 {
+    font-size: 4.55rem;
+  }
+
+  .grid {
+    gap: 1.1rem;
+  }
+
+  .card {
+    min-height: 450px;
+    padding: 1.45rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .section {
+    padding: 3.25rem 0;
+  }
+
+  .heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .heading h2 {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+
+  .card {
+    min-height: 290px;
+  }
+
+  .cardCopy h3 {
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+  }
+}
+
+@media (hover: none) {
+  .card:hover,
+  .card:nth-child(2):hover,
+  .card:hover .visual {
+    transform: none;
+  }
+}
