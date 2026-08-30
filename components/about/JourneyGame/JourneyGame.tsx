@@ -213,8 +213,10 @@ const levels: JourneyLevel[] = [
 
 export default function JourneyGame() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileFlipped, setMobileFlipped] = useState(false);
   const levelRefs = useRef<Array<HTMLElement | null>>([]);
   const activeLevel = levels[activeIndex];
+  const ActiveLevelIcon = activeLevel.icon;
   const progress = (activeIndex / (levels.length - 1)) * 100;
 
   useEffect(() => {
@@ -242,6 +244,39 @@ export default function JourneyGame() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 560px)");
+    const storyIndex = activeIndex;
+    let flipTimer: ReturnType<typeof setTimeout> | undefined;
+    let backTimer: ReturnType<typeof setTimeout> | undefined;
+    let advanceTimer: ReturnType<typeof setTimeout> | undefined;
+
+    const clearStoryTimers = () => {
+      if (flipTimer) clearTimeout(flipTimer);
+      if (backTimer) clearTimeout(backTimer);
+      if (advanceTimer) clearTimeout(advanceTimer);
+    };
+
+    const scheduleStory = () => {
+      clearStoryTimers();
+      if (!media.matches) return;
+
+      setMobileFlipped(false);
+      flipTimer = setTimeout(() => setMobileFlipped(true), 2400);
+      backTimer = setTimeout(() => setMobileFlipped(false), 6900);
+      advanceTimer = setTimeout(() => {
+        setActiveIndex((storyIndex + 1) % levels.length);
+      }, 8200);
+    };
+
+    scheduleStory();
+    media.addEventListener("change", scheduleStory);
+    return () => {
+      clearStoryTimers();
+      media.removeEventListener("change", scheduleStory);
+    };
+  }, [activeIndex]);
+
   const goToLevel = (index: number) => {
     const nextIndex = Math.min(Math.max(index, 0), levels.length - 1);
     const reduceMotion = window.matchMedia(
@@ -264,6 +299,11 @@ export default function JourneyGame() {
       event.preventDefault();
       goToLevel(activeIndex - 1);
     }
+  };
+
+  const changeMobileLevel = (index: number) => {
+    setActiveIndex(Math.min(Math.max(index, 0), levels.length - 1));
+    setMobileFlipped(false);
   };
 
   return (
@@ -289,6 +329,91 @@ export default function JourneyGame() {
         <span className={styles.saveStatus}>
           <i /> Story in motion
         </span>
+      </div>
+
+      <div className={styles.mobileJourney}>
+        <div className={styles.mobilePerspective}>
+          <div
+            className={styles.mobileBox}
+            data-flipped={mobileFlipped ? "true" : "false"}
+          >
+            <button
+              className={`${styles.mobileFace} ${styles.mobileFront}`}
+              type="button"
+              onClick={() => setMobileFlipped(true)}
+              aria-label={`Show details for ${activeLevel.title}`}
+              aria-pressed={mobileFlipped}
+              tabIndex={mobileFlipped ? -1 : 0}
+            >
+              <span className={styles.legoStuds} aria-hidden="true">
+                <i />
+                <i />
+                <i />
+                <i />
+              </span>
+              <span className={styles.mobileScene} aria-hidden="true">
+                <i />
+                <i />
+                <i />
+                <ActiveLevelIcon size={42} />
+              </span>
+              <small>
+                Level {activeLevel.chapter} / {activeLevel.year}
+              </small>
+              <strong>{activeLevel.title}</strong>
+              <span>{activeLevel.location}</span>
+              <em>Tap to rotate + read the phase</em>
+            </button>
+
+            <section
+              className={`${styles.mobileFace} ${styles.mobileBack}`}
+              aria-hidden={!mobileFlipped}
+            >
+              <small>Phase {activeLevel.chapter}</small>
+              <h2>{activeLevel.title}</h2>
+              <p>{activeLevel.story}</p>
+              <dl>
+                <div>
+                  <dt>Quest</dt>
+                  <dd>{activeLevel.quest}</dd>
+                </div>
+                <div>
+                  <dt>Collected</dt>
+                  <dd>{activeLevel.collectible}</dd>
+                </div>
+              </dl>
+              <button
+                type="button"
+                onClick={() => setMobileFlipped(false)}
+                tabIndex={mobileFlipped ? 0 : -1}
+              >
+                Back to animation
+              </button>
+            </section>
+          </div>
+        </div>
+
+        <div className={styles.mobilePhaseControls}>
+          <button
+            type="button"
+            onClick={() => changeMobileLevel(activeIndex - 1)}
+            disabled={activeIndex === 0}
+            aria-label="Previous journey phase"
+          >
+            <ChevronUp />
+          </button>
+          <span>
+            Phase {activeIndex + 1} of {levels.length}
+          </span>
+          <button
+            type="button"
+            onClick={() => changeMobileLevel(activeIndex + 1)}
+            disabled={activeIndex === levels.length - 1}
+            aria-label="Next journey phase"
+          >
+            <ChevronDown />
+          </button>
+        </div>
       </div>
 
       <div className={styles.journeyGrid}>

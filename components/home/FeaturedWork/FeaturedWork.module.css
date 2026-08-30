@@ -72,9 +72,20 @@
   }
 
   .sectionLink {
+    display: flex;
+    width: fit-content;
     min-height: 44px;
     align-items: center;
     margin-bottom: 0.75rem;
+    margin-left: auto;
+    margin-right: 0.9rem;
+    padding: 0.65rem 0.85rem;
+  }
+}
+@media (max-width: 860px) {
+  .sectionLink {
+    min-height: 44px;
+    align-items: center;
     padding: 0.65rem 0.85rem;
   }
 }

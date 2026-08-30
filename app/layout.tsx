@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AmbientInk from "@/components/effects/AmbientInk/AmbientInk";
 import Footer from "@/components/layout/Footer/Footer";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import JsonLd from "@/components/seo/JsonLd";
@@ -106,6 +107,7 @@ export default function RootLayout({
         <JsonLd data={personSchema} />
       </head>
       <body>
+        <AmbientInk />
         <Navbar />
         {children}
         <Footer />
