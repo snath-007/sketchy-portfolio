@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import ProductTheatre from "@/components/home/ProductTheatre/ProductTheatre";
 import Container from "@/components/layout/Container/Container";
 import WorkCard from "@/components/portfolio/WorkCard/Workcard";
 import SectionHeader from "@/components/shared/SectionHeader/SectionHeader";
@@ -26,8 +27,11 @@ export default function FeaturedWork() {
           </Link>
         </div>
 
-        <div className={styles.grid}>
-          <WorkCard work={featured} featured />
+        <div className={styles.showcase}>
+          <div className={styles.grid}>
+            <WorkCard work={featured} featured />
+          </div>
+          <ProductTheatre variant="procleg" />
         </div>
       </Container>
     </section>

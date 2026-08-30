@@ -65,3 +65,137 @@
 .link:hover svg {
   transform: translateX(4px);
 }
+
+/* Application-wide responsive pass */
+@media (max-width: 1600px) {
+  .card {
+    min-height: 220px;
+  }
+  .title {
+    font-size: clamp(1.35rem, 2.1vw, 1.75rem);
+  }
+}
+@media (max-width: 760px) {
+  .card {
+    min-height: 205px;
+  }
+  .content {
+    gap: 0.7rem;
+  }
+  .summary {
+    font-size: 0.88rem;
+    line-height: 1.62;
+  }
+  .actions {
+    gap: 0.7rem;
+  }
+}
+
+/* Lab card color identity */
+.card {
+  --card-surface: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-peach-soft) 88%, var(--color-paper-soft)),
+    color-mix(in srgb, var(--color-lime-soft) 55%, var(--color-paper-soft))
+  );
+  --card-shadow: color-mix(in srgb, #e68b3d 24%, var(--color-shadow));
+  overflow: hidden;
+}
+
+.card::after {
+  position: absolute;
+  right: -48px;
+  top: -72px;
+  width: 190px;
+  aspect-ratio: 1;
+  border: 1px dashed color-mix(in srgb, #e68b3d 34%, transparent);
+  border-radius: 50%;
+  content: "";
+}
+@media (min-width: 1800px) {
+  .card {
+    min-height: 290px;
+  }
+
+  .title {
+    font-size: 2.1rem;
+  }
+
+  .summary {
+    max-width: 48rem;
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    min-height: 220px;
+  }
+
+  .title {
+    font-size: 1.42rem;
+  }
+
+  .summary {
+    font-size: 0.84rem;
+    line-height: 1.58;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .link {
+    min-height: 40px;
+    align-items: center;
+  }
+}
+
+@media (hover: none) {
+  .link:hover svg {
+    transform: none;
+  }
+}
+@media (max-width: 860px) {
+  .link {
+    min-height: 44px;
+    align-items: center;
+  }
+}
+/* Compact mobile project tiles */
+@media (max-width: 600px) {
+  .card {
+    min-height: 0;
+    border-inline: 0;
+    border-radius: 0;
+    padding: 1rem 0.9rem 0.78rem;
+    box-shadow: none;
+  }
+  .blendedCard {
+    border: 0;
+    background: transparent;
+  }
+  .card::after {
+    top: -48px;
+    right: -40px;
+    width: 118px;
+  }
+  .content {
+    gap: 0.54rem;
+  }
+  .title {
+    font-size: clamp(1.16rem, 5.7vw, 1.34rem);
+    line-height: 1.08;
+  }
+  .summary {
+    font-size: 0.76rem;
+    line-height: 1.48;
+  }
+  .actions {
+    gap: 0.45rem;
+  }
+  .link {
+    min-height: 38px;
+    font-size: 0.72rem;
+  }
+}

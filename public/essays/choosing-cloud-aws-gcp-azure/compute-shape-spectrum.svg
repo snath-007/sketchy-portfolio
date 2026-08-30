@@ -1,0 +1,52 @@
+<svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'SF Mono', Menlo, monospace">
+  <rect x="0" y="0" width="900" height="380" fill="#faf9f6"/>
+
+  <text x="450" y="32" font-size="14" fill="#1c1f26" text-anchor="middle" letter-spacing="1" font-weight="700">PICK THE COMPUTE SHAPE LAST</text>
+  <text x="450" y="50" font-size="10.5" fill="#8891a3" text-anchor="middle">increasing operational commitment, left to right</text>
+
+  <!-- spectrum line -->
+  <line x1="60" y1="90" x2="840" y2="90" stroke="#c9cdd6" stroke-width="2"/>
+  <circle cx="60" cy="90" r="4" fill="#1e3a5f"/>
+  <circle cx="840" cy="90" r="4" fill="#1e3a5f"/>
+
+  <!-- 4 stops -->
+  <!-- Serverless -->
+  <line x1="130" y1="90" x2="130" y2="110" stroke="#c9cdd6" stroke-width="1.6"/>
+  <rect x="30" y="120" width="200" height="150" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+  <text x="130" y="146" font-size="12.5" fill="#1c1f26" text-anchor="middle" font-weight="700">Serverless</text>
+  <text x="130" y="163" font-size="12.5" fill="#1c1f26" text-anchor="middle" font-weight="700">functions</text>
+  <text x="130" y="186" font-size="9.5" fill="#5b6270" text-anchor="middle">bursty, event-driven,</text>
+  <text x="130" y="200" font-size="9.5" fill="#5b6270" text-anchor="middle">bounded units of work</text>
+  <text x="130" y="224" font-size="9.5" fill="#8891a3" font-style="italic" text-anchor="middle">watch: cold starts,</text>
+  <text x="130" y="238" font-size="9.5" fill="#8891a3" font-style="italic" text-anchor="middle">time limits, no long-running state</text>
+
+  <!-- Managed app platform -->
+  <line x1="335" y1="90" x2="335" y2="110" stroke="#c9cdd6" stroke-width="1.6"/>
+  <rect x="235" y="120" width="200" height="150" rx="6" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+  <text x="335" y="146" font-size="12.5" fill="#1c1f26" text-anchor="middle" font-weight="700">Managed app</text>
+  <text x="335" y="163" font-size="12.5" fill="#1c1f26" text-anchor="middle" font-weight="700">platform</text>
+  <text x="335" y="186" font-size="9.5" fill="#5b6270" text-anchor="middle">Cloud Run, App Runner,</text>
+  <text x="335" y="200" font-size="9.5" fill="#5b6270" text-anchor="middle">Container Apps</text>
+  <text x="335" y="224" font-size="9.5" fill="#166534" font-style="italic" text-anchor="middle">enough for most teams —</text>
+  <text x="335" y="238" font-size="9.5" fill="#166534" font-style="italic" text-anchor="middle">not &quot;settling&quot;</text>
+
+  <!-- Containers -->
+  <line x1="565" y1="90" x2="565" y2="110" stroke="#c9cdd6" stroke-width="1.6"/>
+  <rect x="465" y="120" width="200" height="150" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+  <text x="565" y="146" font-size="12.5" fill="#1c1f26" text-anchor="middle" font-weight="700">Containers</text>
+  <text x="565" y="168" font-size="9.5" fill="#5b6270" text-anchor="middle">portable, continuously</text>
+  <text x="565" y="182" font-size="9.5" fill="#5b6270" text-anchor="middle">running services</text>
+  <text x="565" y="210" font-size="9.5" fill="#8891a3" font-style="italic" text-anchor="middle">consistent runtime</text>
+  <text x="565" y="224" font-size="9.5" fill="#8891a3" font-style="italic" text-anchor="middle">across dev/stage/prod</text>
+
+  <!-- Kubernetes -->
+  <line x1="770" y1="90" x2="770" y2="110" stroke="#c9cdd6" stroke-width="1.6"/>
+  <rect x="670" y="120" width="200" height="150" rx="6" fill="#ffffff" stroke="#b0533f" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <text x="770" y="146" font-size="12.5" fill="#1c1f26" text-anchor="middle" font-weight="700">Kubernetes</text>
+  <text x="770" y="168" font-size="9.5" fill="#5b6270" text-anchor="middle">standardized orchestration</text>
+  <text x="770" y="182" font-size="9.5" fill="#5b6270" text-anchor="middle">at meaningful scale</text>
+  <text x="770" y="210" font-size="9.5" fill="#8a3a2a" font-style="italic" text-anchor="middle">a platform team's ongoing</text>
+  <text x="770" y="224" font-size="9.5" fill="#8a3a2a" font-style="italic" text-anchor="middle">existence is part of the cost</text>
+
+  <text x="450" y="300" font-size="10.5" fill="#8891a3" text-anchor="middle" font-style="italic">Portability comes from clean domain boundaries and exportable data — not from picking the lowest common denominator.</text>
+</svg>

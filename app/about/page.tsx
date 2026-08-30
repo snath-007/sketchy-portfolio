@@ -1,12 +1,20 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight, Gamepad2, Route } from "lucide-react";
+import JourneyGame from "@/components/about/JourneyGame/JourneyGame";
 import Container from "@/components/layout/Container/Container";
-import styles from "@/components/pages/DetailPage/DetailPage.module.css";
 import Button from "@/components/ui/Button/Button";
+import styles from "./AboutPage.module.css";
 
 export const metadata = {
-  title: "About | Soumen Nath",
+  title: "About",
   description:
-    "About Soumen Nath, Senior Software Engineer working across full-stack systems and agentic AI products.",
+    "The personal and professional journey of Soumen Nath, from Silchar and Guwahati to building software and AI systems in Bangalore.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    url: "/about",
+    title: "About",
+    description:
+      "The personal and professional journey of Soumen Nath, from Silchar and Guwahati to building software and AI systems in Bangalore.",
+  },
 };
 
 export default function AboutPage() {
@@ -14,104 +22,66 @@ export default function AboutPage() {
     <main className={styles.page}>
       <Container>
         <section className={styles.hero}>
+          <div className={styles.heroTopline}>
+            <span>PLAYER ONE</span>
+            <i />
+            <span>ORIGIN STORY</span>
+          </div>
+          <div className={styles.heroGrid}>
+            <div>
+              <p className={styles.eyebrow}>
+                Soumen&apos;s journey / Level select
+              </p>
+              <h1>
+                Every new place
+                <span className={styles.heroAccent}>
+                  unlocked a different version of me.
+                </span>
+              </h1>
+            </div>
+            <div className={styles.heroAside}>
+              <p>
+                From school corridors in Silchar to classrooms in Karimganj,
+                festival camps across the Northeast, my first IT job in
+                Guwahati, and a new chapter in Bangalore.
+              </p>
+              <a className={styles.startButton} href="#journey">
+                Start the journey <ArrowDown size={17} />
+              </a>
+            </div>
+          </div>
+          <div className={styles.gameLegend}>
+            <span>
+              <Gamepad2 size={15} /> Scroll to drive
+            </span>
+            <span>
+              <Route size={15} /> 10 checkpoints
+            </span>
+            <span>
+              <kbd>W</kbd>
+              <kbd>S</kbd>
+              <span>or arrow keys</span>
+            </span>
+          </div>
+        </section>
+      </Container>
+
+      <JourneyGame />
+
+      <Container>
+        <section className={styles.closing}>
           <div>
-            <p className={styles.eyebrow}>About</p>
-            <h1 className={styles.title}>
-              Senior Software Engineer. Full-stack and agentic AI systems.
-            </h1>
-            <p className={styles.description}>
-              I&apos;m a Bangalore-based software engineer with 4+ years of
-              experience building backend systems, full-stack products, and
-              agentic AI pipelines for enterprise clients including AstraZeneca,
-              Alexion, Bank of America, and HALO.
+            <p className={styles.eyebrow}>Current level / Bangalore</p>
+            <h2>The map ends here. The journey doesn&apos;t.</h2>
+            <p>
+              I&apos;m still collecting questions, building useful things, and
+              looking for the next landscape that changes how I think.
             </p>
           </div>
-
-          <aside className={styles.metaCard}>
-            <p className={styles.metaTitle}>Current Focus</p>
-            <ul className={styles.checkList}>
-              <li>Multi-agent LLM systems</li>
-              <li>Enterprise document automation</li>
-              <li>Data governance workflows</li>
-              <li>Full-stack product engineering</li>
-              <li>Cloud-native backend systems</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section className={styles.contentGrid}>
-          <div>
-            <div className={styles.section}>
-              <h2>Experience</h2>
-              <p>
-                I currently work at TrieDatum as a Senior Software Engineer,
-                building procurement, contracting, data access, analytics, and
-                document automation systems. My recent work spans LangGraph
-                multi-agent workflows, FastAPI services, Snowflake governance,
-                Streamlit internal tools, Android IoT monitoring, and React
-                enterprise frontends.
-              </p>
-            </div>
-
-            <div className={styles.section}>
-              <h2>Selected Work</h2>
-              <p>
-                I&apos;ve helped build an IoT smart baby monitor used by 3,000+
-                users, automated Snowflake access provisioning from days to
-                minutes with audit-ready reporting, developed supply-chain AI
-                analytics workflows, and worked on agentic procurement and legal
-                systems using LangGraph, RAG, and cloud services.
-              </p>
-            </div>
-
-            <div className={styles.section}>
-              <h2>Beyond Code</h2>
-              <p>
-                I like systems that are useful, calm, and easy to reason about.
-                This portfolio collects shipped work, lab experiments, and notes
-                from building practical AI products rather than one-off demos.
-              </p>
-            </div>
-          </div>
-
-          <aside className={styles.noteCard}>
-            <h2>Tech That I Use</h2>
-            <div className={styles.tags}>
-              {[
-                "FastAPI",
-                "Node.js",
-                "Python",
-                "LangGraph",
-                "LangChain",
-                "React",
-                "Next.js",
-                "TypeScript",
-                "Streamlit",
-                "Kotlin",
-                "PostgreSQL",
-                "Snowflake",
-                "DynamoDB",
-                "Redis",
-                "AWS",
-                "GCP",
-                "Docker",
-                "Airflow",
-                "OpenSearch",
-                "python-docx",
-              ].map((item) => (
-                <span key={item} className={styles.tag}>
-                  {item}
-                </span>
-              ))}
-            </div>
-          </aside>
-        </section>
-
-        <div className={styles.actionRow}>
           <Button href="mailto:soumen.nath119@gmail.com">
-            Get in touch <ArrowRight size={15} />
+            Send a message <ArrowRight size={15} />
           </Button>
-        </div>
+        </section>
       </Container>
     </main>
   );

@@ -3,3 +3,29 @@
   flex-wrap: wrap;
   gap: 0.5rem;
 }
+
+/* Restrained technology palette */
+.list > :nth-child(4n + 1) {
+  --tech-chip-bg: color-mix(in srgb, #5b7cfa 18%, var(--color-paper-soft));
+  --tech-chip-border: color-mix(in srgb, #5b7cfa 40%, var(--color-border));
+}
+
+.list > :nth-child(4n + 2) {
+  --tech-chip-bg: color-mix(in srgb, #a8cf58 16%, var(--color-paper-soft));
+  --tech-chip-border: color-mix(in srgb, #a8cf58 38%, var(--color-border));
+}
+
+.list > :nth-child(4n + 3) {
+  --tech-chip-bg: color-mix(in srgb, #e68b3d 17%, var(--color-paper-soft));
+  --tech-chip-border: color-mix(in srgb, #e68b3d 38%, var(--color-border));
+}
+
+.list > :nth-child(4n + 4) {
+  --tech-chip-bg: color-mix(in srgb, #9a7ae8 16%, var(--color-paper-soft));
+  --tech-chip-border: color-mix(in srgb, #9a7ae8 36%, var(--color-border));
+}
+@media (max-width: 480px) {
+  .list {
+    gap: 0.38rem;
+  }
+}

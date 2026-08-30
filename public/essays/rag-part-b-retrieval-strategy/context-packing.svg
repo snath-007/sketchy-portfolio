@@ -1,0 +1,53 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'SF Mono', Menlo, monospace">
+  <rect x="0" y="0" width="900" height="400" fill="#faf9f6"/>
+
+  <text x="450" y="30" font-size="14" fill="#1c1f26" text-anchor="middle" letter-spacing="1" font-weight="700">PACK EVIDENCE, NOT NOISE</text>
+
+  <!-- Left: poorly packed -->
+  <rect x="40" y="60" width="380" height="300" rx="6" fill="#ffffff" stroke="#b0533f" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <text x="60" y="86" font-size="12" fill="#8a3a2a" font-weight="700">Padded / unordered context</text>
+  <line x1="60" y1="96" x2="400" y2="96" stroke="#e2e5ea" stroke-width="1"/>
+
+  <rect x="60" y="108" width="340" height="26" rx="3" fill="#f4e9e6"/>
+  <text x="70" y="125" font-size="9.5" fill="#7a4436">chunk (retrieval order, no label)</text>
+
+  <rect x="60" y="140" width="340" height="26" rx="3" fill="#f4e9e6"/>
+  <text x="70" y="157" font-size="9.5" fill="#7a4436">near-duplicate of chunk above</text>
+
+  <rect x="60" y="172" width="340" height="26" rx="3" fill="#f4e9e6"/>
+  <text x="70" y="189" font-size="9.5" fill="#7a4436">marginal relevance, padding</text>
+
+  <rect x="60" y="204" width="340" height="26" rx="3" fill="#f4e9e6"/>
+  <text x="70" y="221" font-size="9.5" fill="#7a4436">source boundary unclear</text>
+
+  <rect x="60" y="236" width="340" height="26" rx="3" fill="#f4e9e6"/>
+  <text x="70" y="253" font-size="9.5" fill="#7a4436">no citation ID attached</text>
+
+  <text x="60" y="290" font-size="9.5" fill="#8a3a2a" font-style="italic">low confidence answered anyway —</text>
+  <text x="60" y="306" font-size="9.5" fill="#8a3a2a" font-style="italic">more material to sound confident, not</text>
+  <text x="60" y="322" font-size="9.5" fill="#8a3a2a" font-style="italic">more material to be correct</text>
+
+  <!-- Right: well packed -->
+  <rect x="480" y="60" width="380" height="300" rx="6" fill="#ffffff" stroke="#166534" stroke-width="1.4"/>
+  <text x="500" y="86" font-size="12" fill="#166534" font-weight="700">Ordered, attributed context</text>
+  <line x1="500" y1="96" x2="840" y2="96" stroke="#e2e5ea" stroke-width="1"/>
+
+  <rect x="500" y="108" width="340" height="26" rx="3" fill="#e7f0e9"/>
+  <text x="510" y="125" font-size="9.5" fill="#1e4d2b">[1] most useful, ranked first</text>
+
+  <rect x="500" y="140" width="340" height="26" rx="3" fill="#e7f0e9"/>
+  <text x="510" y="157" font-size="9.5" fill="#1e4d2b">[2] distinct source, clear boundary</text>
+
+  <rect x="500" y="172" width="340" height="26" rx="3" fill="#e7f0e9"/>
+  <text x="510" y="189" font-size="9.5" fill="#1e4d2b">[3] current version flagged as current</text>
+
+  <rect x="500" y="204" width="340" height="26" rx="3" fill="#fdf3e3"/>
+  <text x="510" y="221" font-size="9.5" fill="#7a5a1e">[4] older version — conflict surfaced</text>
+
+  <rect x="500" y="236" width="340" height="26" rx="3" fill="#e7f0e9"/>
+  <text x="510" y="253" font-size="9.5" fill="#1e4d2b">each — stable citation ID attached</text>
+
+  <text x="500" y="290" font-size="9.5" fill="#166534" font-style="italic">if confidence is still low:</text>
+  <text x="500" y="306" font-size="9.5" fill="#166534" font-style="italic">ask a clarifying question, or abstain —</text>
+  <text x="500" y="322" font-size="9.5" fill="#166534" font-style="italic">don't pad to fill the window</text>
+</svg>

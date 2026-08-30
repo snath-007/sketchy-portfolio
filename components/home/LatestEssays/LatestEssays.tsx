@@ -1,13 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Container from "@/components/layout/Container/Container";
-import ArticleCard from "@/components/portfolio/ArticleCard/ArticleCard";
 import SectionHeader from "@/components/shared/SectionHeader/SectionHeader";
-import { essaysSeed } from "@/content/seed/essays.seed";
+import { publishedEssays } from "@/content/seed/essays.seed";
+import EssayDeck from "../EssayDeck/EssayDeck";
 import styles from "./LatestEssays.module.css";
 
 export default function LatestEssays() {
-  const featured = essaysSeed.filter((item) => item.featured);
+  const featured = publishedEssays.filter((item) => item.featured);
 
   return (
     <section className={styles.section}>
@@ -23,11 +23,18 @@ export default function LatestEssays() {
           </Link>
         </div>
 
-        <div className={styles.list}>
-          {featured.map((article) => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
-        </div>
+        <EssayDeck
+          articles={featured.map(
+            ({ id, slug, title, summary, publishedAt, readingTime }) => ({
+              id,
+              slug,
+              title,
+              summary,
+              publishedAt,
+              readingTime,
+            }),
+          )}
+        />
       </Container>
     </section>
   );

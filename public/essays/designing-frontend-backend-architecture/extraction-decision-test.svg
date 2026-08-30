@@ -1,0 +1,65 @@
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'SF Mono', Menlo, monospace">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3b4252"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="320" fill="#faf9f6"/>
+
+  <text x="450" y="32" font-size="14" fill="#1c1f26" text-anchor="middle" letter-spacing="1" font-weight="700">THE EXTRACTION TEST</text>
+
+  <!-- Step 1 -->
+  <g>
+    <rect x="30" y="70" width="230" height="110" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="145" y="98" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Can you draw a hard</text>
+    <text x="145" y="114" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">line inside the monolith?</text>
+    <text x="145" y="138" font-size="9.5" fill="#5b6270" text-anchor="middle">no shared tables,</text>
+    <text x="145" y="153" font-size="9.5" fill="#5b6270" text-anchor="middle">no imported internals,</text>
+    <text x="145" y="168" font-size="9.5" fill="#5b6270" text-anchor="middle">clean transaction edge</text>
+  </g>
+
+  <line x1="260" y1="125" x2="315" y2="125" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="288" y="115" font-size="10" fill="#8891a3" text-anchor="middle">no</text>
+
+  <!-- Step 1 no branch -->
+  <g>
+    <rect x="30" y="220" width="230" height="70" rx="6" fill="#ffffff" stroke="#b0533f" stroke-width="1.4" stroke-dasharray="4 3"/>
+    <text x="145" y="248" font-size="11" fill="#8a3a2a" text-anchor="middle" font-weight="700">Not ready to extract</text>
+    <text x="145" y="266" font-size="9.5" fill="#5b6270" text-anchor="middle">a network call won't create</text>
+    <text x="145" y="280" font-size="9.5" fill="#5b6270" text-anchor="middle">separability that never existed</text>
+  </g>
+  <line x1="145" y1="180" x2="145" y2="218" stroke="#b0533f" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="160" y="202" font-size="10" fill="#b0533f">no</text>
+
+  <!-- Step 2 -->
+  <g>
+    <rect x="335" y="70" width="230" height="110" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="450" y="98" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Does it need independent</text>
+    <text x="450" y="114" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">scale, release, or ownership?</text>
+    <text x="450" y="138" font-size="9.5" fill="#5b6270" text-anchor="middle">different reliability bar,</text>
+    <text x="450" y="153" font-size="9.5" fill="#5b6270" text-anchor="middle">different on-call boundary,</text>
+    <text x="450" y="168" font-size="9.5" fill="#5b6270" text-anchor="middle">different deploy cadence</text>
+  </g>
+
+  <line x1="565" y1="125" x2="620" y2="125" stroke="#3b4252" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="593" y="115" font-size="10" fill="#8891a3" text-anchor="middle">yes</text>
+
+  <line x1="450" y1="180" x2="450" y2="218" stroke="#b0533f" stroke-width="1.6" marker-end="url(#arr)"/>
+  <g>
+    <rect x="335" y="220" width="230" height="70" rx="6" fill="#ffffff" stroke="#6b7280" stroke-width="1.4" stroke-dasharray="4 3"/>
+    <text x="450" y="248" font-size="11" fill="#4b5160" text-anchor="middle" font-weight="700">Stay a module</text>
+    <text x="450" y="266" font-size="9.5" fill="#5b6270" text-anchor="middle">the boundary is enough —</text>
+    <text x="450" y="280" font-size="9.5" fill="#5b6270" text-anchor="middle">no distributed-systems tax needed</text>
+  </g>
+  <text x="465" y="202" font-size="10" fill="#b0533f">no</text>
+
+  <!-- Step 3 outcome -->
+  <g>
+    <rect x="640" y="70" width="230" height="110" rx="6" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+    <text x="755" y="98" font-size="12" fill="#1c1f26" text-anchor="middle" font-weight="700">Extract it.</text>
+    <text x="755" y="122" font-size="9.5" fill="#5b6270" text-anchor="middle">Lifting out something</text>
+    <text x="755" y="137" font-size="9.5" fill="#5b6270" text-anchor="middle">already separable —</text>
+    <text x="755" y="152" font-size="9.5" fill="#5b6270" text-anchor="middle">not performing surgery</text>
+    <text x="755" y="167" font-size="9.5" fill="#5b6270" text-anchor="middle">to create a seam</text>
+  </g>
+</svg>

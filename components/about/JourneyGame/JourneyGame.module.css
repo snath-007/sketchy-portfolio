@@ -1,0 +1,1999 @@
+.journey {
+  --journey-accent: #e1a448;
+  --journey-progress: 0%;
+  width: min(1540px, calc(100% - 2rem));
+  margin-inline: auto;
+  outline: none;
+}
+
+.journey:focus-visible {
+  outline: 2px solid var(--journey-accent);
+  outline-offset: 6px;
+}
+
+.mobileJourney {
+  display: none;
+}
+
+.gameHeader {
+  position: relative;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-border);
+  border-bottom: 0;
+  border-radius: 0.8rem 0.8rem 0 0;
+  background: color-mix(in srgb, var(--color-paper-soft) 90%, transparent);
+  box-shadow: 0 12px 28px var(--color-shadow-soft);
+  backdrop-filter: blur(14px);
+}
+
+.gameHeader > div,
+.saveStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.gameHeaderIcon {
+  color: var(--journey-accent);
+}
+
+.gameHeader p {
+  margin: 0;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-align: center;
+}
+
+.saveStatus {
+  justify-self: end;
+  color: var(--color-muted);
+  font-size: 0.56rem;
+}
+
+.saveStatus i {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: #2d9b73;
+  box-shadow: 0 0 8px #2d9b73;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+.journeyGrid {
+  display: grid;
+  grid-template-columns: minmax(400px, 0.82fr) minmax(520px, 1.18fr);
+  gap: clamp(1rem, 2.5vw, 2.2rem);
+  align-items: start;
+  border-top: 1px solid var(--color-border);
+}
+
+.routeColumn {
+  position: relative;
+  padding: clamp(2rem, 5vw, 4rem) 0 clamp(3rem, 8vw, 7rem);
+}
+
+.routeLine {
+  position: absolute;
+  top: 4rem;
+  bottom: 7rem;
+  left: 41px;
+  width: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-border) 82%, transparent);
+}
+
+.routeLine::after {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 12px,
+    color-mix(in srgb, var(--color-paper) 72%, transparent) 12px 21px
+  );
+  content: "";
+}
+
+.routeLine i {
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--journey-progress);
+  background: linear-gradient(
+    to bottom,
+    #e1a448,
+    #4e79bd 24%,
+    #4f936e 48%,
+    #e05d78 68%,
+    #7257d3 84%,
+    #e4773d
+  );
+  transition: height 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.level {
+  position: relative;
+  display: grid;
+  min-height: min(680px, 72vh);
+  grid-template-columns: 84px 1fr;
+  align-items: center;
+  scroll-margin-top: 15vh;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 680px;
+}
+
+.checkpoint {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  margin-inline: auto;
+  border: 2px solid var(--color-border-strong);
+  border-radius: 0.7rem;
+  background: var(--color-paper-soft);
+  box-shadow:
+    0 0 0 6px var(--color-paper),
+    0 8px 18px var(--color-shadow-soft);
+  color: var(--color-muted);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 900;
+  place-items: center;
+  transform: rotate(45deg);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.checkpoint span {
+  transform: rotate(-45deg);
+}
+
+.checkpoint:hover,
+.checkpoint:focus-visible {
+  border-color: var(--journey-accent);
+  outline: none;
+  transform: rotate(45deg) scale(1.08);
+}
+
+.activeLevel .checkpoint,
+.passedLevel .checkpoint {
+  border-color: var(--journey-accent);
+  background: var(--journey-accent);
+  color: #151513;
+}
+
+.activeLevel .checkpoint {
+  box-shadow:
+    0 0 0 6px var(--color-paper),
+    0 0 0 9px color-mix(in srgb, var(--journey-accent) 24%, transparent),
+    0 0 22px color-mix(in srgb, var(--journey-accent) 70%, transparent);
+  animation: checkpointPulse 2.2s ease-in-out infinite;
+}
+
+.levelCard {
+  position: relative;
+  overflow: hidden;
+  margin-right: clamp(0rem, 2vw, 1.6rem);
+  padding: clamp(1.35rem, 3vw, 2.25rem);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--color-paper-soft) 78%, transparent);
+  box-shadow: 0 14px 34px var(--color-shadow-soft);
+  opacity: 0.56;
+  transform: scale(0.96) translateX(-8px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.levelCard::after {
+  position: absolute;
+  right: -3rem;
+  bottom: -5rem;
+  width: 11rem;
+  height: 11rem;
+  border: 1px dashed color-mix(in srgb, var(--journey-accent) 34%, transparent);
+  border-radius: 50%;
+  content: "";
+  opacity: 0.5;
+}
+
+.activeLevel .levelCard {
+  border-color: color-mix(
+    in srgb,
+    var(--journey-accent) 58%,
+    var(--color-border)
+  );
+  box-shadow:
+    0 22px 48px var(--color-shadow),
+    inset 4px 0 0 var(--journey-accent);
+  opacity: 1;
+  transform: scale(1) translateX(0);
+}
+
+.passedLevel .levelCard {
+  opacity: 0.76;
+  transform: scale(0.98);
+}
+
+.levelMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.59rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.levelMeta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.levelTitle {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  margin-top: 1.35rem;
+}
+
+.levelIcon {
+  display: grid;
+  width: 3.1rem;
+  height: 3.1rem;
+  flex: 0 0 auto;
+  border: 1px solid
+    color-mix(in srgb, var(--journey-accent) 48%, var(--color-border));
+  border-radius: 0.85rem;
+  background: color-mix(
+    in srgb,
+    var(--journey-accent) 16%,
+    var(--color-paper-soft)
+  );
+  color: color-mix(in srgb, var(--journey-accent) 72%, var(--color-ink));
+  place-items: center;
+}
+
+.levelTitle small {
+  color: var(--journey-accent);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.levelTitle h2 {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.55rem, 2.7vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.levelCard > p {
+  margin: 1.15rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.questRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 0.75rem;
+  align-items: center;
+  margin-top: 1.2rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.55rem;
+  background: color-mix(in srgb, var(--color-paper) 72%, transparent);
+}
+
+.questRow span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.57rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.questRow strong {
+  font-size: 0.75rem;
+}
+
+.collectible {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin-top: 0.85rem;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+}
+
+.collectible svg {
+  color: var(--journey-accent);
+}
+
+.collectible strong {
+  color: var(--color-ink);
+}
+
+.workMode {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid
+    color-mix(in srgb, var(--journey-accent) 45%, var(--color-border));
+  border-radius: 999px;
+  background: color-mix(
+    in srgb,
+    var(--journey-accent) 12%,
+    var(--color-paper-soft)
+  );
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.workMode svg {
+  color: var(--journey-accent);
+}
+
+.stage {
+  --scene-sky: color-mix(
+    in srgb,
+    var(--color-blue-soft) 76%,
+    var(--color-paper-soft)
+  );
+  --scene-ground: color-mix(
+    in srgb,
+    var(--color-lime-soft) 72%,
+    var(--color-paper-soft)
+  );
+  position: sticky;
+  top: 5.4rem;
+  display: grid;
+  overflow: hidden;
+  height: min(690px, calc(100vh - 7rem));
+  min-height: 540px;
+  grid-template-rows: auto auto 1fr auto;
+  border: 1px solid var(--color-border);
+  border-radius: 0 0 1rem 1rem;
+  background: var(--scene-sky);
+  box-shadow: 0 28px 60px var(--color-shadow);
+  transition:
+    background 0.75s ease,
+    border-color 0.4s ease;
+  isolation: isolate;
+}
+
+.stage::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--color-ink) 3%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-ink) 3%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 24px 24px;
+  content: "";
+  opacity: 0.6;
+}
+
+.schoolScene {
+  --scene-sky: color-mix(in srgb, #dceaff 72%, var(--color-paper-soft));
+  --scene-ground: color-mix(in srgb, #dfe8bb 76%, var(--color-paper-soft));
+}
+
+.townScene {
+  --scene-sky: color-mix(in srgb, #f8d8ba 70%, var(--color-paper-soft));
+  --scene-ground: color-mix(in srgb, #d8d1b3 76%, var(--color-paper-soft));
+}
+
+.collegeScene {
+  --scene-sky: color-mix(in srgb, #e6dafa 72%, var(--color-paper-soft));
+  --scene-ground: color-mix(in srgb, #d8e7c0 72%, var(--color-paper-soft));
+}
+
+.campusScene {
+  --scene-sky: color-mix(in srgb, #cfe8df 76%, var(--color-paper-soft));
+  --scene-ground: color-mix(in srgb, #bad59f 68%, var(--color-paper-soft));
+}
+
+.classroomScene {
+  --scene-sky: color-mix(in srgb, #f0d4ba 70%, var(--color-paper-soft));
+  --scene-ground: color-mix(in srgb, #d7b991 66%, var(--color-paper-soft));
+}
+
+.festivalScene {
+  --scene-sky: color-mix(in srgb, #312348 88%, var(--color-paper-soft));
+  --scene-ground: color-mix(in srgb, #324735 82%, var(--color-paper-soft));
+}
+
+.corporateScene {
+  --scene-sky: color-mix(in srgb, #b9d1e7 76%, var(--color-paper-soft));
+  --scene-ground: color-mix(in srgb, #aeb8c2 72%, var(--color-paper-soft));
+}
+
+.remoteScene {
+  --scene-sky: color-mix(in srgb, #ddd3f4 76%, var(--color-paper-soft));
+  --scene-ground: color-mix(in srgb, #c2cde0 70%, var(--color-paper-soft));
+}
+
+.skyScene {
+  --scene-sky: color-mix(in srgb, #a9d3f4 82%, var(--color-paper-soft));
+  --scene-ground: color-mix(in srgb, #d7e1e7 76%, var(--color-paper-soft));
+}
+
+.hud {
+  position: relative;
+  z-index: 8;
+  display: grid;
+  grid-template-columns: 0.55fr 0.8fr 1.4fr;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-border) 72%, transparent);
+  background: color-mix(in srgb, var(--color-paper-soft) 76%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.hud > div {
+  min-width: 0;
+  padding: 0.8rem 1rem;
+}
+
+.hud > div + div {
+  border-left: 1px solid
+    color-mix(in srgb, var(--color-border) 72%, transparent);
+}
+
+.hud small,
+.stageCaption span {
+  display: block;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.48rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.hud strong {
+  display: block;
+  overflow: hidden;
+  margin-top: 0.18rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.66rem, 1vw, 0.82rem);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progressBar {
+  position: relative;
+  z-index: 8;
+  height: 0.8rem;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-border) 70%, transparent);
+  background: color-mix(in srgb, var(--color-paper) 58%, transparent);
+}
+
+.progressBar i {
+  display: block;
+  width: var(--journey-progress);
+  height: 100%;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--journey-accent) 0 8px,
+    color-mix(in srgb, var(--journey-accent) 72%, white) 8px 14px
+  );
+  transition:
+    width 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.4s ease;
+}
+
+.progressBar span {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.45rem;
+  font-weight: 900;
+  transform: translateY(-50%);
+}
+
+.world {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    var(--scene-sky) 0 60%,
+    var(--scene-ground) 60% 100%
+  );
+  transition: background 0.75s ease;
+}
+
+.sun {
+  position: absolute;
+  top: 12%;
+  right: 12%;
+  width: clamp(3.2rem, 6vw, 5.4rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffd86b;
+  box-shadow:
+    0 0 0 12px color-mix(in srgb, #ffd86b 18%, transparent),
+    0 0 38px color-mix(in srgb, #ffd86b 58%, transparent);
+  transition:
+    background 0.6s ease,
+    transform 0.6s ease;
+  animation: sunHover 5s ease-in-out infinite;
+}
+
+.festivalScene .sun {
+  background: #f3e9dc;
+  box-shadow:
+    0 0 0 10px rgb(255 255 255 / 0.08),
+    0 0 32px rgb(255 255 255 / 0.22);
+  transform: scale(0.72);
+}
+
+.clouds svg {
+  position: absolute;
+  color: color-mix(in srgb, white 82%, var(--scene-sky));
+  fill: color-mix(in srgb, white 42%, transparent);
+  stroke-width: 1;
+  animation: cloudMove 16s linear infinite;
+}
+
+.clouds svg:nth-child(1) {
+  top: 18%;
+  left: -12%;
+  width: 5rem;
+}
+
+.clouds svg:nth-child(2) {
+  top: 33%;
+  left: 42%;
+  width: 3.5rem;
+  animation-delay: -8s;
+}
+
+.clouds svg:nth-child(3) {
+  top: 10%;
+  left: 72%;
+  width: 4.2rem;
+  animation-delay: -13s;
+}
+
+.stars {
+  display: none;
+}
+
+.festivalScene .stars {
+  display: block;
+}
+
+.stars i {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 8px white;
+  animation: starBlink 2s ease-in-out infinite;
+}
+
+.stars i:nth-child(1) {
+  top: 12%;
+  left: 14%;
+}
+
+.stars i:nth-child(2) {
+  top: 24%;
+  left: 36%;
+  animation-delay: -0.5s;
+}
+
+.stars i:nth-child(3) {
+  top: 8%;
+  left: 56%;
+  animation-delay: -1s;
+}
+
+.stars i:nth-child(4) {
+  top: 31%;
+  right: 18%;
+  animation-delay: -1.5s;
+}
+
+.stars i:nth-child(5) {
+  top: 17%;
+  right: 7%;
+}
+
+.mountains {
+  position: absolute;
+  right: -4%;
+  bottom: 39%;
+  left: -4%;
+  height: 34%;
+}
+
+.mountains i {
+  position: absolute;
+  bottom: 0;
+  width: 45%;
+  height: 78%;
+  background: color-mix(in srgb, #4e7c61 66%, var(--scene-ground));
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  opacity: 0.7;
+}
+
+.mountains i:nth-child(1) {
+  left: -5%;
+}
+
+.mountains i:nth-child(2) {
+  left: 42%;
+  height: 100%;
+  background: color-mix(in srgb, #3e6f57 72%, var(--scene-ground));
+}
+
+.mountains i:nth-child(3) {
+  right: -4%;
+  height: 68%;
+}
+
+.townScene .mountains,
+.classroomScene .mountains,
+.corporateScene .mountains,
+.remoteScene .mountains {
+  opacity: 0.25;
+}
+
+.skyScene .mountains {
+  opacity: 0;
+}
+
+.landmark {
+  position: absolute;
+  right: 9%;
+  bottom: 28%;
+  width: 42%;
+  height: 31%;
+  border: 3px solid color-mix(in srgb, var(--color-ink) 60%, transparent);
+  border-bottom: 0;
+  background: color-mix(
+    in srgb,
+    var(--color-paper-soft) 78%,
+    var(--journey-accent)
+  );
+  box-shadow: 10px 12px 0
+    color-mix(in srgb, var(--journey-accent) 28%, transparent);
+  transition:
+    background 0.6s ease,
+    width 0.6s ease,
+    height 0.6s ease;
+}
+
+.landmark::before {
+  position: absolute;
+  top: -24%;
+  right: -4%;
+  left: -4%;
+  height: 25%;
+  border: 3px solid color-mix(in srgb, var(--color-ink) 60%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--journey-accent) 55%,
+    var(--color-paper-soft)
+  );
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  content: "";
+}
+
+.landmark span {
+  position: absolute;
+  top: 24%;
+  width: 14%;
+  height: 24%;
+  border: 2px solid color-mix(in srgb, var(--color-ink) 48%, transparent);
+  background: color-mix(in srgb, #8ac4df 60%, var(--color-paper-soft));
+}
+
+.landmark span:nth-child(1) {
+  left: 12%;
+}
+
+.landmark span:nth-child(2) {
+  left: 42%;
+}
+
+.landmark span:nth-child(3) {
+  right: 12%;
+}
+
+.landmark strong {
+  position: absolute;
+  bottom: 0;
+  left: 42%;
+  width: 18%;
+  height: 34%;
+  border: 2px solid color-mix(in srgb, var(--color-ink) 48%, transparent);
+  border-bottom: 0;
+  background: color-mix(
+    in srgb,
+    var(--journey-accent) 42%,
+    var(--color-paper-soft)
+  );
+}
+
+.corporateScene .landmark {
+  right: 5%;
+  width: 54%;
+  height: 46%;
+  border-radius: 0.3rem 0.3rem 0 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 13%,
+      rgb(255 255 255 / 0.4) 13% 17%
+    ), linear-gradient(135deg, #6485a6, #2f4c69);
+}
+
+.corporateScene .landmark::before {
+  top: -10%;
+  height: 11%;
+  clip-path: none;
+}
+
+.corporateScene .landmark span {
+  border-color: rgb(255 255 255 / 0.4);
+  background: #bdd7e8;
+}
+
+.remoteScene .landmark {
+  right: 9%;
+  bottom: 36%;
+  width: 46%;
+  height: 29%;
+  border: 5px solid #252d3a;
+  border-radius: 0.6rem;
+  background: linear-gradient(135deg, #6d5aaa, #2d3958);
+  box-shadow:
+    0 22px 0 -10px #252d3a,
+    12px 24px 0 rgb(67 49 113 / 0.2);
+}
+
+.remoteScene .landmark::before {
+  top: auto;
+  right: 38%;
+  bottom: -28%;
+  left: 38%;
+  height: 28%;
+  border: 0;
+  background: #252d3a;
+  clip-path: none;
+}
+
+.remoteScene .landmark span {
+  top: 16%;
+  width: 20%;
+  height: 22%;
+  border: 0;
+  border-radius: 0.2rem;
+  background: rgb(255 255 255 / 0.54);
+}
+
+.remoteScene .landmark strong {
+  right: 9%;
+  bottom: 16%;
+  left: 9%;
+  width: auto;
+  height: 25%;
+  border: 0;
+  border-radius: 0.2rem;
+  background: rgb(255 255 255 / 0.28);
+}
+
+.classroomScene .landmark {
+  width: 48%;
+  height: 26%;
+  border-radius: 0.3rem;
+  background: #365f4c;
+  box-shadow: 8px 10px 0 color-mix(in srgb, #c99559 35%, transparent);
+}
+
+.classroomScene .landmark::before,
+.classroomScene .landmark span,
+.classroomScene .landmark strong {
+  display: none;
+}
+
+.skyScene .landmark {
+  opacity: 0;
+}
+
+.festival {
+  position: absolute;
+  right: 10%;
+  bottom: 27%;
+  display: none;
+  width: 35%;
+  height: 28%;
+}
+
+.festivalScene .festival {
+  display: block;
+}
+
+.festival span {
+  position: absolute;
+  right: 18%;
+  bottom: 0;
+  width: 64%;
+  height: 70%;
+  border: 2px solid #f1b5c3;
+  background: #5e345d;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.festival i {
+  position: absolute;
+  top: -6%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffd86b;
+  box-shadow:
+    28px 8px #f48c70,
+    56px -2px #86d6c2,
+    84px 8px #ffd86b,
+    112px 0 #f48c70;
+}
+
+.festival i:first-of-type {
+  left: 0;
+}
+
+.festival i:last-of-type {
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.road {
+  position: absolute;
+  z-index: 3;
+  right: -5%;
+  bottom: 8%;
+  left: -5%;
+  height: 22%;
+  border-top: 4px solid color-mix(in srgb, var(--color-ink) 56%, transparent);
+  border-bottom: 4px solid color-mix(in srgb, var(--color-ink) 56%, transparent);
+  background: color-mix(in srgb, #62666b 72%, var(--color-paper));
+  transform: skewX(-8deg);
+}
+
+.road::before {
+  position: absolute;
+  top: 48%;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    to right,
+    #f7e8aa 0 32px,
+    transparent 32px 56px
+  );
+  content: "";
+  animation: roadMove 0.9s linear infinite;
+}
+
+.road i {
+  position: absolute;
+  bottom: 100%;
+  width: 5px;
+  height: 54px;
+  background: color-mix(in srgb, var(--color-ink) 68%, transparent);
+}
+
+.road i::before {
+  position: absolute;
+  top: -10px;
+  left: -7px;
+  width: 19px;
+  height: 13px;
+  border-radius: 50% 50% 0 0;
+  background: #ffd86b;
+  box-shadow: 0 0 10px #ffd86b;
+  content: "";
+}
+
+.road i:nth-child(1) {
+  left: 8%;
+}
+
+.road i:nth-child(2) {
+  left: 36%;
+}
+
+.road i:nth-child(3) {
+  right: 34%;
+}
+
+.road i:nth-child(4) {
+  right: 7%;
+}
+
+.skyScene .road {
+  bottom: 0;
+  height: 13%;
+  background: #777c82;
+}
+
+.vehicle {
+  position: absolute;
+  z-index: 5;
+  bottom: 10.5%;
+  left: 38%;
+  display: grid;
+  width: clamp(6.2rem, 10vw, 9rem);
+  height: clamp(4.4rem, 7vw, 6.1rem);
+  color: color-mix(in srgb, var(--journey-accent) 78%, var(--color-ink));
+  filter: drop-shadow(7px 9px 7px rgb(0 0 0 / 0.24));
+  place-items: center;
+  transform-origin: center bottom;
+  animation:
+    vehicleEnter 0.82s cubic-bezier(0.22, 1, 0.36, 1),
+    vehicleRide 1.8s 0.82s ease-in-out infinite;
+}
+
+.vehicle::after {
+  position: absolute;
+  right: 8%;
+  bottom: -0.05rem;
+  left: 8%;
+  z-index: -1;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: rgb(17 20 24 / 0.3);
+  content: "";
+  filter: blur(4px);
+}
+
+.vehicleBody {
+  position: absolute;
+  right: 8%;
+  bottom: 0.7rem;
+  left: 8%;
+  z-index: 1;
+  height: 42%;
+  border: 2px solid color-mix(in srgb, var(--color-ink) 74%, transparent);
+  border-radius: 0.5rem 0.8rem 0.35rem 0.35rem;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--journey-accent) 78%, white),
+    var(--journey-accent) 56%,
+    color-mix(in srgb, var(--journey-accent) 74%, #1f2934)
+  );
+  box-shadow:
+    inset 0 5px 0 rgb(255 255 255 / 0.2),
+    inset 0 -5px 0 rgb(0 0 0 / 0.1);
+}
+
+.vehicleCabin {
+  position: absolute;
+  right: 18%;
+  bottom: 43%;
+  left: 29%;
+  z-index: 2;
+  height: 28%;
+  border: 2px solid color-mix(in srgb, var(--color-ink) 70%, transparent);
+  border-bottom: 0;
+  border-radius: 0.5rem 0.7rem 0 0;
+  background: linear-gradient(135deg, #d8edf2, #6d98ad 62%, #344f61);
+  clip-path: polygon(16% 0, 82% 0, 100% 100%, 0 100%);
+}
+
+.vehicleDetail {
+  position: absolute;
+  right: 5%;
+  bottom: 1.55rem;
+  z-index: 5;
+  width: 0.52rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: #ffe58b;
+  box-shadow:
+    0 0 10px #ffe58b,
+    4.8rem 0 0 color-mix(in srgb, #d64335 78%, var(--journey-accent));
+}
+
+.rider {
+  display: none;
+}
+
+.wheelOne,
+.wheelTwo {
+  position: absolute;
+  z-index: 6;
+  bottom: 0.18rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 0.26rem solid #24282d;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #bcc4c7 0 22%,
+    #515a60 24% 40%,
+    #171a1d 42%
+  );
+  box-shadow: 0 2px 0 rgb(255 255 255 / 0.15) inset;
+  animation: wheelSpin 0.58s linear infinite;
+}
+
+.wheelOne {
+  left: 0.9rem;
+}
+
+.wheelTwo {
+  right: 0.9rem;
+}
+
+.speedLine {
+  position: absolute;
+  top: 47%;
+  right: 96%;
+  width: 3rem;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--journey-accent);
+  box-shadow:
+    15px -12px 0 color-mix(in srgb, var(--journey-accent) 60%, transparent),
+    7px 13px 0 color-mix(in srgb, var(--journey-accent) 45%, transparent);
+  animation: speedPulse 0.8s ease-in-out infinite;
+}
+
+.bus,
+.train {
+  width: clamp(8rem, 13vw, 11.5rem);
+}
+
+.bus .vehicleBody,
+.train .vehicleBody {
+  top: 18%;
+  height: auto;
+  border-radius: 0.35rem 0.7rem 0.3rem 0.3rem;
+}
+
+.bus .vehicleCabin,
+.train .vehicleCabin {
+  top: 27%;
+  right: 16%;
+  bottom: auto;
+  left: 15%;
+  height: 26%;
+  border-bottom: 2px solid color-mix(in srgb, var(--color-ink) 70%, transparent);
+  border-radius: 0.2rem;
+  background: repeating-linear-gradient(90deg, #a9d1dc 0 17%, #314d5e 17% 21%);
+  clip-path: none;
+}
+
+.train .vehicleBody {
+  border-radius: 0.35rem 1.2rem 0.3rem 0.3rem;
+  background: linear-gradient(
+    170deg,
+    #eef2ef,
+    #7da5bb 45%,
+    var(--journey-accent) 46% 62%,
+    #364957 63%
+  );
+}
+
+.bike {
+  bottom: 10.2%;
+  width: clamp(6rem, 9vw, 7.8rem);
+}
+
+.bike .vehicleBody {
+  right: 28%;
+  bottom: 1.25rem;
+  left: 28%;
+  height: 0.25rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--journey-accent);
+  box-shadow:
+    -0.8rem -0.55rem 0 -0.05rem var(--journey-accent),
+    0.75rem -0.6rem 0 -0.07rem
+    color-mix(in srgb, var(--journey-accent) 72%, var(--color-ink));
+  transform: rotate(-8deg);
+}
+
+.bike .vehicleCabin,
+.bike .vehicleDetail {
+  display: none;
+}
+
+.bike .rider {
+  position: absolute;
+  top: 4%;
+  left: 47%;
+  z-index: 5;
+  display: block;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 2px solid var(--color-ink);
+  border-radius: 50%;
+  background: #b67d5c;
+  box-shadow: -0.3rem 1rem 0 0.1rem
+    color-mix(in srgb, var(--journey-accent) 78%, var(--color-ink));
+}
+
+.bike .wheelOne {
+  left: 0.25rem;
+}
+
+.bike .wheelTwo {
+  right: 0.18rem;
+}
+
+.plane {
+  top: auto;
+  bottom: 8.5%;
+  left: 37%;
+  width: clamp(8rem, 14vw, 11.5rem);
+  height: clamp(4.8rem, 8vw, 6.7rem);
+  animation:
+    planeEnter 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+    planeCruise 2.8s 1.4s ease-in-out infinite;
+}
+
+.plane .vehicleBody {
+  right: 12%;
+  bottom: 1.25rem;
+  left: 8%;
+  height: 30%;
+  border-radius: 65% 90% 42% 55%;
+  background: linear-gradient(
+    to bottom,
+    #fcfbf4 0 54%,
+    var(--journey-accent) 55% 68%,
+    #a8b9c4 69%
+  );
+}
+
+.plane .vehicleBody::before {
+  position: absolute;
+  top: 42%;
+  left: 32%;
+  width: 46%;
+  height: 42%;
+  border: 2px solid color-mix(in srgb, var(--color-ink) 58%, transparent);
+  background: color-mix(in srgb, var(--journey-accent) 62%, #e9edf0);
+  clip-path: polygon(0 0, 100% 54%, 94% 100%, 8% 70%);
+  content: "";
+  transform: rotate(9deg);
+}
+
+.plane .vehicleCabin {
+  top: 43%;
+  right: 18%;
+  bottom: auto;
+  left: auto;
+  width: 13%;
+  height: 12%;
+  border: 0;
+  border-radius: 70% 90% 30% 20%;
+  background: #35566a;
+  clip-path: none;
+}
+
+.plane .vehicleDetail,
+.plane .rider,
+.plane .speedLine {
+  display: none;
+}
+
+.plane .wheelOne,
+.plane .wheelTwo {
+  bottom: 0.72rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-width: 0.16rem;
+}
+
+.plane .wheelOne {
+  left: 42%;
+}
+
+.plane .wheelTwo {
+  right: 26%;
+}
+.stageCaption {
+  position: relative;
+  z-index: 8;
+  padding: 0.85rem 1rem 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
+  background: color-mix(in srgb, var(--color-paper-soft) 82%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.stageCaption strong {
+  display: block;
+  margin-top: 0.24rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+}
+
+.stageCaption small {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  color: var(--journey-accent);
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.controls {
+  position: absolute;
+  z-index: 12;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.controls button {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0.45rem;
+  background: var(--color-paper-soft);
+  box-shadow: 0 4px 10px var(--color-shadow-soft);
+  color: var(--color-ink);
+  cursor: pointer;
+  place-items: center;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.controls button:hover:not(:disabled) {
+  background: var(--journey-accent);
+  transform: translateY(-2px);
+}
+
+.controls button:focus-visible {
+  outline: 2px solid var(--journey-accent);
+  outline-offset: 2px;
+}
+
+.controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+.controls svg {
+  width: 1rem;
+}
+
+@keyframes statusPulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes phaseControlHint {
+  0%,
+  100% {
+    box-shadow: 0 3px 8px var(--color-shadow-soft);
+    opacity: 0.46;
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow:
+      0 8px 18px var(--color-shadow),
+      0 0 0 3px color-mix(in srgb, var(--journey-accent) 18%, transparent);
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes checkpointPulse {
+  50% {
+    transform: rotate(45deg) scale(1.08);
+  }
+}
+
+@keyframes sunHover {
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+@keyframes cloudMove {
+  from {
+    translate: -2rem 0;
+  }
+  to {
+    translate: 12rem 0;
+  }
+}
+
+@keyframes starBlink {
+  50% {
+    opacity: 0.25;
+    scale: 0.6;
+  }
+}
+
+@keyframes roadMove {
+  to {
+    background-position-x: -56px;
+  }
+}
+
+@keyframes wheelSpin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes vehicleEnter {
+  from {
+    opacity: 0;
+    translate: 145% 2%;
+    scale: 0.82;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes vehicleRide {
+  50% {
+    translate: -7px -1px;
+    rotate: -0.35deg;
+  }
+}
+
+@keyframes speedPulse {
+  50% {
+    opacity: 0.25;
+    scale: 0.72 1;
+    transform-origin: right;
+  }
+}
+
+@keyframes planeEnter {
+  from {
+    opacity: 0;
+    translate: 125% -185%;
+    rotate: -11deg;
+    scale: 0.72;
+  }
+  72% {
+    translate: 12% -18%;
+    rotate: -3deg;
+    scale: 0.94;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+
+@keyframes planeCruise {
+  50% {
+    translate: -10px 0;
+    rotate: 0.25deg;
+  }
+}
+
+@media (min-width: 1800px) {
+  .journey {
+    width: min(1720px, calc(100% - 5rem));
+  }
+
+  .stage {
+    height: min(780px, calc(100vh - 7rem));
+  }
+
+  .level {
+    min-height: min(760px, 74vh);
+  }
+}
+
+@media (max-width: 1080px) {
+  .journeyGrid {
+    grid-template-columns: minmax(350px, 0.86fr) minmax(440px, 1.14fr);
+  }
+
+  .hud {
+    grid-template-columns: 0.45fr 0.7fr 1.4fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .journey {
+    width: min(100% - 1.25rem, 760px);
+  }
+
+  .gameHeader {
+    grid-template-columns: 1fr auto;
+  }
+
+  .gameHeader p {
+    display: none;
+  }
+
+  .journeyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .stage {
+    top: 4.25rem;
+    z-index: 15;
+    order: -1;
+    height: min(460px, 58vh);
+    min-height: 390px;
+    border-radius: 0 0 0.8rem 0.8rem;
+  }
+
+  .routeColumn {
+    padding-top: 2rem;
+  }
+
+  .level {
+    min-height: 68vh;
+  }
+
+  .levelCard {
+    margin-right: 0;
+  }
+
+  .world {
+    min-height: 230px;
+  }
+}
+
+@media (max-width: 560px) {
+  .journeyGrid {
+    display: none;
+  }
+
+  .mobileJourney {
+    display: block;
+    padding: 1rem 0 1.25rem;
+    border: 1px solid var(--color-border);
+    border-top: 0;
+    border-radius: 0 0 0.9rem 0.9rem;
+    background:
+      linear-gradient(
+        color-mix(in srgb, var(--color-ink) 3%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--color-ink) 3%, transparent) 1px,
+        transparent 1px
+      ), color-mix(in srgb, var(--color-paper-soft) 84%, transparent);
+    background-size: 22px 22px;
+  }
+
+  .mobilePerspective {
+    min-height: 430px;
+    padding: 0 0.8rem;
+    perspective: 1100px;
+  }
+
+  .mobileBox {
+    position: relative;
+    width: 100%;
+    min-height: 430px;
+    transform-style: preserve-3d;
+    transition: transform 620ms cubic-bezier(0.2, 0.75, 0.2, 1);
+  }
+
+  .mobileBox[data-flipped="true"] {
+    transform: rotateY(180deg);
+  }
+
+  .mobileFace {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    min-height: 430px;
+    overflow: hidden;
+    border: 1px solid
+      color-mix(in srgb, var(--journey-accent) 55%, var(--color-border));
+    border-radius: 1rem;
+    backface-visibility: hidden;
+    box-shadow:
+      10px 12px 0 color-mix(in srgb, var(--journey-accent) 20%, transparent),
+      0 22px 44px var(--color-shadow);
+  }
+
+  .mobileFront {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 1.2rem;
+    background:
+      radial-gradient(
+        circle at 68% 28%,
+        color-mix(in srgb, var(--journey-accent) 44%, transparent),
+        transparent 37%
+      ),
+      linear-gradient(
+        150deg,
+        color-mix(in srgb, var(--journey-accent) 18%, var(--color-paper-soft)),
+        var(--color-paper-soft)
+      );
+    color: var(--color-ink);
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .legoStuds {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.8rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1.2rem);
+    gap: 0.35rem;
+  }
+
+  .legoStuds i {
+    aspect-ratio: 1;
+    border: 1px solid color-mix(in srgb, var(--journey-accent) 72%, #111);
+    border-radius: 50%;
+    background: var(--journey-accent);
+    box-shadow:
+      inset 3px 3px 0 rgba(255, 255, 255, 0.24),
+      0 3px 0 color-mix(in srgb, var(--journey-accent) 62%, #111);
+  }
+
+  .mobileScene {
+    position: absolute;
+    top: 4rem;
+    right: 1.2rem;
+    left: 1.2rem;
+    display: grid;
+    min-height: 185px;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--journey-accent) 44%, transparent);
+    border-radius: 0.85rem;
+    background: color-mix(
+      in srgb,
+      var(--journey-accent) 16%,
+      var(--color-paper)
+    );
+    place-items: center;
+  }
+
+  .mobileScene::after {
+    position: absolute;
+    right: -10%;
+    bottom: 18%;
+    left: -10%;
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--journey-accent) 0 24px,
+      transparent 24px 38px
+    );
+    content: "";
+    animation: roadMove 1.4s linear infinite;
+  }
+
+  .mobileScene > i {
+    position: absolute;
+    width: 3.4rem;
+    height: 3.4rem;
+    border: 1px solid color-mix(in srgb, var(--journey-accent) 48%, transparent);
+    border-radius: 0.7rem;
+    transform: rotate(28deg);
+  }
+
+  .mobileScene > i:nth-child(1) {
+    top: 1.1rem;
+    left: 1rem;
+  }
+
+  .mobileScene > i:nth-child(2) {
+    right: 1.2rem;
+    bottom: 1rem;
+    transform: rotate(-18deg);
+  }
+
+  .mobileScene > i:nth-child(3) {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    opacity: 0.45;
+  }
+
+  .mobileScene svg {
+    position: relative;
+    z-index: 2;
+    color: var(--journey-accent);
+    filter: drop-shadow(0 8px 12px var(--color-shadow));
+    animation: vehicleRide 2.2s ease-in-out infinite;
+  }
+
+  .mobileFront small,
+  .mobileBack > small {
+    color: var(--journey-accent);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .mobileFront strong {
+    max-width: 16ch;
+    margin-top: 0.3rem;
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 9vw, 2.35rem);
+    font-weight: 500;
+    line-height: 0.98;
+  }
+
+  .mobileFront > span:not(.legoStuds, .mobileScene) {
+    margin-top: 0.45rem;
+    color: var(--color-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .mobileFront em {
+    margin-top: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .mobileBack {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.35rem;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--journey-accent) 14%, var(--color-paper-soft)),
+      var(--color-paper-soft)
+    );
+    transform: rotateY(180deg);
+  }
+
+  .mobileBack h2 {
+    margin: 0.4rem 0 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.65rem, 8vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .mobileBack p {
+    margin: 0.85rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.88rem;
+    line-height: 1.58;
+  }
+
+  .mobileBack dl {
+    display: grid;
+    gap: 0.55rem;
+    margin: 1rem 0;
+  }
+
+  .mobileBack dl > div {
+    padding: 0.6rem 0.7rem;
+    border-left: 3px solid var(--journey-accent);
+    background: color-mix(in srgb, var(--journey-accent) 9%, transparent);
+  }
+
+  .mobileBack dt {
+    color: var(--journey-accent);
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mobileBack dd {
+    margin: 0.2rem 0 0;
+    font-size: 0.76rem;
+    font-weight: 800;
+  }
+
+  .mobileBack > button {
+    min-height: 44px;
+    align-self: flex-start;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--color-ink);
+    border-radius: 0.45rem;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-size: 0.72rem;
+    font-weight: 800;
+  }
+
+  .mobilePhaseControls {
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    gap: 0.65rem;
+    align-items: center;
+    margin: 1rem 0.8rem 0;
+  }
+
+  .mobilePhaseControls button {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 0.55rem;
+    background: var(--color-paper-soft);
+    color: var(--color-ink);
+    place-items: center;
+  }
+
+  .mobilePhaseControls button:not(:disabled) {
+    animation: phaseControlHint 2.8s ease-in-out infinite;
+  }
+
+  .mobilePhaseControls button:last-child:not(:disabled) {
+    animation-delay: 0.55s;
+  }
+
+  .mobilePhaseControls button:disabled {
+    opacity: 0.32;
+  }
+
+  .mobilePhaseControls span {
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .journey {
+    width: calc(100% - 0.75rem);
+  }
+
+  .gameHeader {
+    padding-inline: 0.7rem;
+  }
+
+  .saveStatus {
+    font-size: 0;
+  }
+
+  .saveStatus::after {
+    font-size: 0.52rem;
+    content: "SAVED";
+  }
+
+  .stage {
+    top: 4rem;
+    height: min(405px, 54vh);
+    min-height: 355px;
+  }
+
+  .hud {
+    grid-template-columns: 0.5fr 0.9fr 1.3fr;
+  }
+
+  .hud > div {
+    padding: 0.6rem 0.55rem;
+  }
+
+  .hud strong {
+    font-size: 0.58rem;
+  }
+
+  .hud small {
+    font-size: 0.4rem;
+  }
+
+  .routeLine {
+    left: 25px;
+  }
+
+  .level {
+    min-height: 64vh;
+    grid-template-columns: 52px 1fr;
+  }
+
+  .checkpoint {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 0.5rem;
+    font-size: 0.55rem;
+  }
+
+  .levelCard {
+    padding: 1.05rem;
+  }
+
+  .levelMeta {
+    display: grid;
+    justify-content: start;
+  }
+
+  .levelTitle {
+    align-items: flex-start;
+  }
+
+  .levelIcon {
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+
+  .questRow {
+    grid-template-columns: 1fr;
+  }
+
+  .stageCaption {
+    padding-right: 6rem;
+  }
+
+  .stageCaption strong {
+    font-size: 0.95rem;
+  }
+
+  .controls {
+    bottom: 0.65rem;
+  }
+
+  .vehicle {
+    left: 23%;
+  }
+
+  .landmark {
+    right: 3%;
+    width: 48%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saveStatus i,
+  .activeLevel .checkpoint,
+  .memoryPhoto,
+  .memoryPhoto img,
+  .sun,
+  .clouds svg,
+  .stars i,
+  .road::before,
+  .vehicle,
+  .wheelOne,
+  .wheelTwo,
+  .speedLine {
+    animation: none;
+  }
+
+  .world::before,
+  .mobileBox,
+  .levelCard,
+  .progressBar i,
+  .controls button {
+    transition: none;
+  }
+
+  .mobileScene::after,
+  .mobileScene svg,
+  .mobilePhaseControls button:not(:disabled) {
+    animation: none;
+  }
+}
+/* Mobile grid containment and controls */
+@media (max-width: 900px) {
+  .journeyGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .routeColumn,
+  .stage,
+  .level,
+  .levelCard,
+  .levelMeta,
+  .levelTitle,
+  .questRow {
+    min-width: 0;
+  }
+
+  .stage {
+    width: 100%;
+  }
+
+  .levelTitle h2,
+  .levelCard > p,
+  .questRow strong {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 560px) {
+  .gameHeader {
+    min-height: 52px;
+  }
+
+  .controls button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .levelTitle {
+    gap: 0.7rem;
+  }
+
+  .levelTitle h2 {
+    font-size: clamp(1.45rem, 7.2vw, 1.85rem);
+    line-height: 1.08;
+  }
+
+  .levelCard > p {
+    font-size: 0.88rem;
+    line-height: 1.62;
+  }
+}
+@media (max-width: 900px) {
+  .controls button {
+    width: 44px;
+    height: 44px;
+  }
+}

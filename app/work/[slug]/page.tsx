@@ -1,4 +1,5 @@
 import { ArrowLeft } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Container from "@/components/layout/Container/Container";
@@ -13,13 +14,28 @@ export function generateStaticParams() {
   return workSeed.map((work) => ({ slug: work.slug }));
 }
 
-export async function generateMetadata({ params }: WorkDetailPageProps) {
+export async function generateMetadata({
+  params,
+}: WorkDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const work = workSeed.find((item) => item.slug === slug);
-
+  if (!work) return { title: "Work", robots: { index: false, follow: false } };
+  const path = `/work/${work.slug}`;
   return {
-    title: work ? `${work.title} | Work` : "Work",
-    description: work?.summary,
+    title: work.title,
+    description: work.summary,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "article",
+      url: path,
+      title: work.title,
+      description: work.summary,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: work.title,
+      description: work.summary,
+    },
   };
 }
 

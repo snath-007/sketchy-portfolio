@@ -132,7 +132,7 @@
 }
 
 .checkList li::before {
-  content: "☑";
+  content: "\2611";
   color: var(--color-ink);
 }
 
@@ -148,7 +148,20 @@
 }
 
 .articleBody {
-  max-width: 760px;
+  width: 100%;
+}
+
+.articleBody > .title {
+  max-width: 1100px;
+}
+
+.articleBody > .description {
+  max-width: 900px;
+}
+
+.articleContent,
+.articleSection {
+  width: 100%;
 }
 
 .articleSection + .articleSection {
@@ -289,5 +302,273 @@
 
   .caseStudyAside {
     position: static;
+  }
+}
+
+.articleList {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--color-ink);
+  line-height: 1.7;
+}
+.articleNote {
+  margin-top: 1.2rem;
+  border-left: 3px solid var(--color-ink);
+  background: var(--color-paper-soft);
+  padding: 0.9rem 1rem;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+/* Intermediate desktop and laptop scaling. The base styles remain the large/QHD treatment. */
+@media (max-width: 1920px) {
+  .title {
+    font-size: clamp(2.75rem, 4.2vw, 3.75rem);
+  }
+
+  .articleBody > .title {
+    max-width: 960px;
+  }
+
+  .backLink {
+    margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+  }
+}
+
+@media (max-width: 1600px) {
+  .page {
+    padding-top: 0.9rem;
+    padding-bottom: clamp(2.75rem, 5vw, 4.25rem);
+  }
+
+  .title {
+    font-size: clamp(2.55rem, 3.8vw, 3.35rem);
+    line-height: 1.03;
+  }
+
+  .articleBody > .title {
+    max-width: 880px;
+  }
+
+  .articleBody > .description {
+    max-width: 780px;
+  }
+
+  .description {
+    margin-top: 0.9rem;
+    font-size: 0.96rem;
+    line-height: 1.68;
+  }
+
+  .articleSection + .articleSection {
+    margin-top: 1.75rem;
+  }
+
+  .articleSection h2 {
+    font-size: clamp(1.3rem, 2vw, 1.65rem);
+  }
+
+  .articleSection p {
+    font-size: 0.96rem;
+    line-height: 1.75;
+  }
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: clamp(2.35rem, 5vw, 3rem);
+  }
+
+  .backLink {
+    margin-bottom: 1.8rem;
+  }
+
+  .articleBody > .title,
+  .articleBody > .description {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding-top: 0.75rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .backLink {
+    margin-bottom: 1.5rem;
+    font-size: 0.78rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.7rem;
+    font-size: 0.66rem;
+  }
+
+  .title {
+    font-size: clamp(2rem, 10vw, 2.45rem);
+    line-height: 1.04;
+  }
+
+  .description {
+    font-size: 0.92rem;
+    line-height: 1.62;
+  }
+
+  .articleSection + .articleSection {
+    margin-top: 1.5rem;
+  }
+
+  .articleSection h2 {
+    font-size: 1.35rem;
+  }
+
+  .articleSection p {
+    font-size: 0.93rem;
+    line-height: 1.7;
+  }
+
+  .articleList {
+    gap: 0.5rem;
+    padding-left: 1rem;
+  }
+
+  .articleNote {
+    padding: 0.75rem 0.85rem;
+  }
+}
+
+.articleLongform {
+  margin-top: clamp(2.25rem, 5vw, 3.75rem);
+}
+
+@media (max-width: 640px) {
+  .articleLongform {
+    margin-top: 2rem;
+  }
+}
+
+/* Atmospheric route canvas */
+.page {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      circle at 96% 4%,
+      color-mix(in srgb, var(--color-blue-soft) 68%, transparent),
+      transparent 30rem
+    ),
+    radial-gradient(
+      circle at 0 58%,
+      color-mix(in srgb, var(--color-peach-soft) 52%, transparent),
+      transparent 30rem
+    ),
+    linear-gradient(
+      180deg,
+      transparent,
+      color-mix(in srgb, var(--color-lime-soft) 24%, transparent)
+    );
+}
+
+.metaCard {
+  background:
+    linear-gradient(rgba(32, 31, 27, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 31, 27, 0.03) 1px, transparent 1px),
+    color-mix(in srgb, var(--color-blue-soft) 72%, var(--color-paper-soft));
+  background-size: 24px 24px;
+}
+
+.noteCard {
+  background:
+    linear-gradient(rgba(32, 31, 27, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 31, 27, 0.03) 1px, transparent 1px),
+    color-mix(in srgb, var(--color-peach-soft) 68%, var(--color-paper-soft));
+  background-size: 24px 24px;
+}
+
+.workflowStep:nth-child(3n + 1) {
+  background: color-mix(
+    in srgb,
+    var(--color-blue-soft) 64%,
+    var(--color-paper-soft)
+  );
+}
+.workflowStep:nth-child(3n + 2) {
+  background: color-mix(
+    in srgb,
+    var(--color-peach-soft) 64%,
+    var(--color-paper-soft)
+  );
+}
+.workflowStep:nth-child(3n + 3) {
+  background: color-mix(
+    in srgb,
+    var(--color-lime-soft) 64%,
+    var(--color-paper-soft)
+  );
+}
+.articleNote {
+  background: color-mix(
+    in srgb,
+    var(--color-lilac-soft) 58%,
+    var(--color-paper-soft)
+  );
+}
+
+/* Dark-mode typography assurance */
+html[data-theme="dark"] .metaCard,
+html[data-theme="dark"] .noteCard,
+html[data-theme="dark"] .workflowStep,
+html[data-theme="dark"] .articleNote {
+  color: var(--color-ink);
+}
+
+html[data-theme="dark"] .tag {
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-paper-soft) 84%, transparent);
+}
+@media (min-width: 1800px) {
+  .page {
+    padding-top: 1.75rem;
+    padding-bottom: 6.5rem;
+  }
+
+  .title {
+    max-width: 900px;
+    font-size: 4.3rem;
+  }
+
+  .articleBody > .title {
+    max-width: 1080px;
+  }
+
+  .articleBody > .description {
+    max-width: 940px;
+    font-size: 1.05rem;
+  }
+
+  .articleSection p,
+  .sectionBlock p:not(.sectionEyebrow) {
+    font-size: 1.02rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .workflowStep {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 0.85rem;
+  }
+
+  .metaCard,
+  .noteCard {
+    padding: 1rem;
+  }
+
+  .actionRow {
+    margin-top: 1.8rem;
   }
 }

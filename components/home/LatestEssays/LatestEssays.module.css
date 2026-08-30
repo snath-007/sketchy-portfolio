@@ -28,3 +28,66 @@
     margin-bottom: 1.25rem;
   }
 }
+
+/* Immersive color surface */
+.section {
+  background:
+    radial-gradient(
+      circle at 92% 24%,
+      color-mix(in srgb, var(--color-lime-soft) 82%, transparent),
+      transparent 36%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-blue-soft) 42%, var(--color-paper)),
+      color-mix(in srgb, var(--color-lilac-soft) 54%, var(--color-paper))
+    );
+}
+
+.sectionLink {
+  border: 1px solid color-mix(in srgb, var(--color-ink) 16%, transparent);
+  border-radius: 999px;
+  padding: 0.48rem 0.72rem;
+  background: color-mix(in srgb, var(--color-paper-soft) 64%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.list {
+  display: grid;
+  gap: 0.7rem;
+  border-top: 0;
+}
+@media (min-width: 1600px) {
+  .section {
+    padding: 5.25rem 0 6rem;
+  }
+
+  .sectionLink {
+    padding: 0.62rem 0.9rem;
+    font-size: 0.86rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .section {
+    overflow: hidden;
+    padding: 2.5rem 0 3rem;
+  }
+
+  .sectionLink {
+    min-height: 44px;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding: 0.65rem 0.85rem;
+  }
+}
+
+@media (min-width: 861px) {
+  .section {
+    display: grid;
+    min-height: calc(100svh - 4.25rem);
+    align-items: center;
+    padding: clamp(1.75rem, 3svh, 3rem) 0;
+    scroll-margin-top: 4.25rem;
+  }
+}

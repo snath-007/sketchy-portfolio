@@ -1,0 +1,65 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'SF Mono', Menlo, monospace">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3b4252"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="420" fill="#faf9f6"/>
+
+  <text x="450" y="28" font-size="14" fill="#1c1f26" text-anchor="middle" letter-spacing="1" font-weight="700">MATCH AUTONOMY TO UNCERTAINTY</text>
+  <text x="450" y="45" font-size="10" fill="#8891a3" text-anchor="middle">one dial, four points — not four competing technologies</text>
+
+  <!-- Axis -->
+  <line x1="70" y1="330" x2="830" y2="330" stroke="#c9cdd6" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="70" y="352" font-size="10.5" fill="#5b6270">low uncertainty</text>
+  <text x="830" y="352" font-size="10.5" fill="#5b6270" text-anchor="end">high uncertainty</text>
+
+  <!-- diagonal predictability/autonomy hint -->
+  <line x1="90" y1="300" x2="810" y2="120" stroke="#e2e5ea" stroke-width="10" stroke-linecap="round"/>
+  <text x="120" y="292" font-size="9" fill="#8891a3">predictability ↓</text>
+  <text x="700" y="132" font-size="9" fill="#8891a3">autonomy ↑</text>
+
+  <!-- 4 stops -->
+  <g>
+    <circle cx="150" cy="272" r="7" fill="#1e3a5f"/>
+    <rect x="60" y="150" width="180" height="100" rx="6" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+    <text x="150" y="176" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Deterministic</text>
+    <text x="150" y="192" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">workflow</text>
+    <text x="150" y="214" font-size="8.5" fill="#5b6270" text-anchor="middle">known rules, fixed</text>
+    <text x="150" y="228" font-size="8.5" fill="#5b6270" text-anchor="middle">transitions</text>
+    <line x1="150" y1="250" x2="150" y2="265" stroke="#c9cdd6" stroke-width="1.2"/>
+  </g>
+
+  <g>
+    <circle cx="350" cy="242" r="7" fill="#1e3a5f"/>
+    <rect x="260" y="150" width="180" height="100" rx="6" fill="#ffffff" stroke="#2b2f38" stroke-width="1.4"/>
+    <text x="350" y="176" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">AI-assisted</text>
+    <text x="350" y="192" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">workflow</text>
+    <text x="350" y="214" font-size="8.5" fill="#5b6270" text-anchor="middle">model inside known</text>
+    <text x="350" y="228" font-size="8.5" fill="#5b6270" text-anchor="middle">steps, fixed sequence</text>
+    <line x1="350" y1="250" x2="350" y2="235" stroke="#c9cdd6" stroke-width="1.2"/>
+  </g>
+
+  <g>
+    <circle cx="560" cy="205" r="7" fill="#1e3a5f"/>
+    <rect x="470" y="90" width="190" height="120" rx="6" fill="#ffffff" stroke="#1e3a5f" stroke-width="2"/>
+    <text x="565" y="118" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Bounded agentic</text>
+    <text x="565" y="134" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">workflow</text>
+    <text x="565" y="156" font-size="8.5" fill="#166534" font-style="italic" text-anchor="middle">real autonomy, inside a</text>
+    <text x="565" y="170" font-size="8.5" fill="#166534" font-style="italic" text-anchor="middle">graph, with budgets</text>
+    <text x="565" y="190" font-size="8.5" fill="#5b6270" text-anchor="middle">the honest middle ground</text>
+    <line x1="565" y1="210" x2="562" y2="198" stroke="#c9cdd6" stroke-width="1.2"/>
+  </g>
+
+  <g>
+    <circle cx="770" cy="165" r="7" fill="#1e3a5f"/>
+    <rect x="680" y="80" width="180" height="100" rx="6" fill="#ffffff" stroke="#b0533f" stroke-width="1.4" stroke-dasharray="4 3"/>
+    <text x="770" y="106" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">Open-ended</text>
+    <text x="770" y="122" font-size="11" fill="#1c1f26" text-anchor="middle" font-weight="700">agent</text>
+    <text x="770" y="144" font-size="8.5" fill="#8a3a2a" font-style="italic" text-anchor="middle">largest eval surface,</text>
+    <text x="770" y="158" font-size="8.5" fill="#8a3a2a" font-style="italic" text-anchor="middle">cost, and exposure</text>
+    <line x1="770" y1="180" x2="770" y2="172" stroke="#c9cdd6" stroke-width="1.2"/>
+  </g>
+
+  <text x="450" y="390" font-size="10" fill="#8891a3" text-anchor="middle" font-style="italic">Reach further right only when paths genuinely can't be enumerated economically at design time.</text>
+</svg>

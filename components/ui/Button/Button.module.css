@@ -91,3 +91,16 @@
   background: color-mix(in srgb, var(--color-paper-soft) 62%, transparent);
   color: var(--color-ink);
 }
+@media (pointer: coarse) {
+  .button {
+    min-height: 48px;
+  }
+}
+
+@media (hover: none) {
+  .button:hover,
+  .button:hover svg,
+  .button:hover::after {
+    transform: none;
+  }
+}

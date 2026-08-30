@@ -21,3 +21,46 @@
   background: var(--color-paper-soft);
   transform: translateY(-1px);
 }
+
+/* Animated theme control */
+.toggle {
+  border-radius: 50%;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-blue-soft) 58%, var(--color-paper-soft)),
+    var(--color-paper-soft)
+  );
+  box-shadow: 0 7px 18px var(--color-shadow-soft);
+}
+
+.toggle:hover {
+  border-color: color-mix(in srgb, #4e7cff 55%, var(--color-border));
+  transform: translateY(-2px) rotate(12deg);
+}
+
+.toggle svg {
+  transition: transform 260ms ease;
+}
+.toggle:hover svg {
+  transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .toggle svg {
+    transition: none;
+  }
+}
+@media (pointer: coarse) {
+  .toggle {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (hover: none) {
+  .toggle:hover,
+  .toggle:hover svg {
+    transform: none;
+  }
+}
