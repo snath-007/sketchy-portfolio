@@ -1,7 +1,15 @@
 "use client";
 
-import { Network, Sparkles } from "lucide-react";
-import { type CSSProperties, Fragment, useState } from "react";
+import {
+  Braces,
+  CloudCog,
+  Cpu,
+  Database,
+  Layers3,
+  Network,
+  Sparkles,
+} from "lucide-react";
+import { type CSSProperties, Fragment, useEffect, useState } from "react";
 import styles from "./SkillWeb.module.css";
 
 type SkillGroup = "agents" | "backend" | "frontend" | "data" | "cloud";
@@ -18,38 +26,87 @@ type SkillNode = {
 
 const groups: Record<
   SkillGroup,
-  { label: string; color: string; description: string }
+  {
+    label: string;
+    color: string;
+    description: string;
+    icon: typeof Network;
+  }
 > = {
   agents: {
     label: "AI & agents",
     color: "#d85d76",
+    icon: Cpu,
     description:
       "Agent workflows, retrieval systems, evaluation, and document intelligence.",
   },
   backend: {
     label: "Backend",
     color: "#d89135",
+    icon: Braces,
     description:
       "Reliable APIs, workflow services, integrations, and asynchronous systems.",
   },
   frontend: {
     label: "Frontend",
     color: "#4c79c4",
+    icon: Layers3,
     description:
       "Clear interfaces that make complicated products feel approachable.",
   },
   data: {
     label: "Data",
     color: "#4c9670",
+    icon: Database,
     description:
       "Governed data platforms, search, analytics, and operational evidence.",
   },
   cloud: {
     label: "Cloud & delivery",
     color: "#8564c4",
+    icon: CloudCog,
     description:
       "Infrastructure and delivery practices that carry products into production.",
   },
+};
+
+const groupOrder: SkillGroup[] = [
+  "agents",
+  "backend",
+  "frontend",
+  "data",
+  "cloud",
+];
+
+const constellationPositions: Record<
+  SkillGroup,
+  Array<{ x: number; y: number }>
+> = {
+  agents: [
+    { x: 19, y: 34 },
+    { x: 80, y: 29 },
+    { x: 73, y: 76 },
+  ],
+  backend: [
+    { x: 17, y: 70 },
+    { x: 37, y: 27 },
+    { x: 84, y: 61 },
+  ],
+  frontend: [
+    { x: 18, y: 31 },
+    { x: 82, y: 38 },
+    { x: 31, y: 78 },
+  ],
+  data: [
+    { x: 16, y: 66 },
+    { x: 48, y: 24 },
+    { x: 84, y: 69 },
+  ],
+  cloud: [
+    { x: 16, y: 38 },
+    { x: 82, y: 31 },
+    { x: 69, y: 78 },
+  ],
 };
 
 const skills: SkillNode[] = [
@@ -192,10 +249,132 @@ const skills: SkillNode[] = [
 
 export default function SkillWeb() {
   const [activeGroup, setActiveGroup] = useState<SkillGroup | null>(null);
+  const [mobileGroup, setMobileGroup] = useState<SkillGroup>("agents");
   const active = activeGroup ? groups[activeGroup] : null;
+  const mobileGroupDetails = groups[mobileGroup];
+  const mobileSkills = skills.filter((skill) => skill.group === mobileGroup);
+  const mobilePositions = constellationPositions[mobileGroup];
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 560px)");
+    let slideshow: ReturnType<typeof setInterval> | undefined;
+
+    const syncSlideshow = () => {
+      if (slideshow) clearInterval(slideshow);
+      slideshow = undefined;
+      if (!media.matches) return;
+
+      slideshow = setInterval(() => {
+        setMobileGroup((current) => {
+          const currentIndex = groupOrder.indexOf(current);
+          return groupOrder[(currentIndex + 1) % groupOrder.length];
+        });
+      }, 4800);
+    };
+
+    syncSlideshow();
+    media.addEventListener("change", syncSlideshow);
+    return () => {
+      if (slideshow) clearInterval(slideshow);
+      media.removeEventListener("change", syncSlideshow);
+    };
+  }, []);
 
   return (
     <section className={styles.section} aria-labelledby="skill-web-title">
+      <section
+        className={styles.mobileConstellation}
+        aria-labelledby="mobile-skill-web-title"
+      >
+        <header className={styles.mobileHeading}>
+          <p className={styles.eyebrow}>
+            <Network size={14} /> Skills / constellation scan
+          </p>
+          <h2 id="mobile-skill-web-title">
+            One connected domain <em>at a time.</em>
+          </h2>
+        </header>
+
+        <div
+          className={styles.constellationStage}
+          key={mobileGroup}
+          style={
+            {
+              "--constellation-color": mobileGroupDetails.color,
+            } as CSSProperties
+          }
+        >
+          <svg
+            className={styles.constellationLines}
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            {mobilePositions.map((position, index) => (
+              <line
+                key={mobileSkills[index].name}
+                x1="50"
+                y1="54"
+                x2={position.x}
+                y2={position.y}
+              />
+            ))}
+          </svg>
+
+          <div className={styles.mobileCore}>
+            <Sparkles size={18} />
+            <small>{mobileGroupDetails.label}</small>
+            <strong>Connected craft</strong>
+            <p>{mobileGroupDetails.description}</p>
+          </div>
+
+          {mobileSkills.map((skill, index) => (
+            <span
+              className={styles.constellationNode}
+              key={skill.name}
+              style={
+                {
+                  "--node-x": `${mobilePositions[index].x}%`,
+                  "--node-y": `${mobilePositions[index].y}%`,
+                  "--node-delay": `${index * 0.24}s`,
+                } as CSSProperties
+              }
+            >
+              <i />
+              <strong>{skill.name}</strong>
+            </span>
+          ))}
+        </div>
+
+        <div
+          className={styles.consoleControls}
+          role="tablist"
+          aria-label="Choose a skill constellation"
+        >
+          {groupOrder.map((key) => {
+            const group = groups[key];
+            const Icon = group.icon;
+            return (
+              <button
+                type="button"
+                role="tab"
+                key={key}
+                aria-selected={mobileGroup === key}
+                aria-label={`Show ${group.label} constellation`}
+                title={group.label}
+                onClick={() => setMobileGroup(key)}
+              >
+                <Icon aria-hidden="true" />
+                <span>{group.label}</span>
+              </button>
+            );
+          })}
+        </div>
+        <p className={styles.slideStatus} aria-live="polite">
+          Auto scan {groupOrder.indexOf(mobileGroup) + 1} / {groupOrder.length}
+        </p>
+      </section>
+
       <fieldset
         className={styles.web}
         aria-label="Interactive skill connections"

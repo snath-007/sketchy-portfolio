@@ -7,6 +7,10 @@
   box-shadow: 0 24px 55px var(--color-shadow-soft);
 }
 
+.mobileConstellation {
+  display: none;
+}
+
 .heading {
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.55fr);
@@ -492,5 +496,321 @@
     min-height: 32px;
     padding: 0.35rem 0.48rem;
     font-size: 0.5rem;
+  }
+}
+/* Mobile constellation slideshow */
+@media (max-width: 560px) {
+  .section {
+    overflow: visible;
+    margin-block: 2rem;
+    border-radius: 1rem;
+  }
+
+  .web {
+    display: none;
+  }
+
+  .mobileConstellation {
+    display: block;
+    padding: 1rem;
+    border-radius: inherit;
+    background:
+      linear-gradient(
+        color-mix(in srgb, var(--color-ink) 3%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--color-ink) 3%, transparent) 1px,
+        transparent 1px
+      ), var(--color-paper);
+    background-size: 24px 24px;
+  }
+
+  .mobileHeading {
+    width: 100%;
+  }
+
+  .mobileHeading h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.55rem, 7.8vw, 1.95rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .mobileHeading h2 em {
+    color: color-mix(in srgb, #4d73c7 70%, var(--color-ink));
+    font-weight: inherit;
+  }
+
+  .constellationStage {
+    --constellation-color: #d85d76;
+    position: relative;
+    height: 350px;
+    margin-top: 0.85rem;
+    overflow: hidden;
+    border: 1px solid
+      color-mix(in srgb, var(--constellation-color) 42%, var(--color-border));
+    border-radius: 0.85rem;
+    background:
+      radial-gradient(
+        circle at 50% 54%,
+        color-mix(in srgb, var(--constellation-color) 20%, transparent),
+        transparent 31%
+      ), color-mix(in srgb, var(--color-paper-soft) 82%, transparent);
+    animation: constellationReveal 520ms ease both;
+  }
+
+  .constellationStage::before,
+  .constellationStage::after {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--constellation-color);
+    box-shadow:
+      34px 24px 0
+      color-mix(in srgb, var(--constellation-color) 65%, transparent),
+      126px 12px 0
+      color-mix(in srgb, var(--constellation-color) 42%, transparent),
+      212px 42px 0
+      color-mix(in srgb, var(--constellation-color) 55%, transparent),
+      78px 188px 0
+      color-mix(in srgb, var(--constellation-color) 46%, transparent),
+      248px 214px 0
+      color-mix(in srgb, var(--constellation-color) 62%, transparent);
+    content: "";
+    opacity: 0.7;
+  }
+
+  .constellationStage::before {
+    top: 12%;
+    left: 8%;
+  }
+
+  .constellationStage::after {
+    right: 18%;
+    bottom: 18%;
+    rotate: 146deg;
+  }
+
+  .constellationLines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    color: var(--constellation-color);
+  }
+
+  .constellationLines line {
+    stroke: currentColor;
+    stroke-dasharray: 2.5 2;
+    stroke-width: 0.42;
+    vector-effect: non-scaling-stroke;
+    animation: constellationLine 900ms ease both;
+  }
+
+  .mobileCore {
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    z-index: 3;
+    display: grid;
+    width: 9.4rem;
+    min-height: 9.4rem;
+    padding: 0.9rem;
+    border: 1px solid
+      color-mix(in srgb, var(--constellation-color) 68%, var(--color-border));
+    border-radius: 50%;
+    background: color-mix(
+      in srgb,
+      var(--constellation-color) 13%,
+      var(--color-paper-soft)
+    );
+    box-shadow:
+      0 16px 34px var(--color-shadow),
+      0 0 0 9px color-mix(in srgb, var(--constellation-color) 8%, transparent);
+    text-align: center;
+    translate: -50% -50%;
+    place-content: center;
+  }
+
+  .mobileCore svg {
+    margin: 0 auto 0.35rem;
+    color: var(--constellation-color);
+  }
+
+  .mobileCore small {
+    color: var(--constellation-color);
+    font-family: var(--font-mono);
+    font-size: 0.49rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mobileCore strong {
+    margin-top: 0.2rem;
+    font-family: var(--font-heading);
+    font-size: 1.28rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .mobileCore p {
+    margin: 0.45rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.56rem;
+    line-height: 1.4;
+  }
+
+  .constellationNode {
+    position: absolute;
+    top: var(--node-y);
+    left: var(--node-x);
+    z-index: 4;
+    display: grid;
+    justify-items: center;
+    gap: 0.32rem;
+    color: var(--color-ink);
+    translate: -50% -50%;
+    animation: constellationNode 700ms var(--node-delay) ease both;
+  }
+
+  .constellationNode i {
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 2px solid var(--color-paper-soft);
+    border-radius: 50%;
+    background: var(--constellation-color);
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, var(--constellation-color) 18%, transparent),
+      0 0 17px var(--constellation-color);
+  }
+
+  .constellationNode strong {
+    max-width: 8rem;
+    padding: 0.35rem 0.48rem;
+    border: 1px solid
+      color-mix(in srgb, var(--constellation-color) 52%, var(--color-border));
+    border-radius: 0.3rem;
+    background: color-mix(in srgb, var(--color-paper-soft) 92%, transparent);
+    box-shadow: 0 6px 14px var(--color-shadow-soft);
+    font-family: var(--font-mono);
+    font-size: 0.54rem;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .consoleControls {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.38rem;
+    margin-top: 0.75rem;
+  }
+
+  .consoleControls button {
+    display: grid;
+    min-width: 0;
+    min-height: 58px;
+    gap: 0.22rem;
+    padding: 0.45rem 0.2rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 0.38rem;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-paper-soft) 96%, white),
+      color-mix(in srgb, var(--color-ink) 6%, var(--color-paper-soft))
+    );
+    box-shadow:
+      inset 0 -3px 0 color-mix(in srgb, var(--color-ink) 13%, transparent),
+      0 5px 12px var(--color-shadow-soft);
+    color: var(--color-muted);
+    cursor: pointer;
+    place-items: center;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .consoleControls button:hover,
+  .consoleControls button:focus-visible {
+    border-color: var(--constellation-color, var(--color-ink));
+    outline: none;
+    box-shadow:
+      inset 0 -2px 0 color-mix(in srgb, var(--color-ink) 18%, transparent),
+      0 9px 18px var(--color-shadow);
+    color: var(--color-ink);
+    transform: translateY(-3px);
+  }
+
+  .consoleControls button[aria-selected="true"] {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+    box-shadow:
+      inset 0 -3px 0 color-mix(in srgb, white 18%, transparent),
+      0 7px 16px var(--color-shadow);
+    color: var(--color-paper);
+  }
+
+  .consoleControls svg {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  .consoleControls span {
+    overflow: hidden;
+    max-width: 100%;
+    font-family: var(--font-mono);
+    font-size: 0.42rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .slideStatus {
+    margin: 0.55rem 0 0;
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: 0.48rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-align: right;
+    text-transform: uppercase;
+  }
+}
+
+@keyframes constellationReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+@keyframes constellationLine {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 20;
+  }
+}
+
+@keyframes constellationNode {
+  from {
+    opacity: 0;
+    scale: 0.72;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .constellationStage,
+  .constellationLines line,
+  .constellationNode {
+    animation: none;
   }
 }

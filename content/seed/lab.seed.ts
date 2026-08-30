@@ -10,7 +10,7 @@ export const labSeed: ProjectItem[] = [
     description:
       "RevFlow is a long-running lab project exploring how applied AI, workflow automation, and domain-aware backend architecture can reduce operational friction for modern revenue teams.",
     github: "https://github.com/snath-007/rev_flow_ai",
-    liveDemo: "#",
+    liveDemo: "https://revflow-ai-demo.vercel.app",
     technologies: [
       "AI Agents",
       "Workflow Engine",

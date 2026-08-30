@@ -270,3 +270,30 @@ html[data-theme="dark"] .tabs span {
     align-content: center;
   }
 }
+/* Mobile editorial rhythm */
+@media (max-width: 560px) {
+  .page {
+    padding-bottom: 3.25rem;
+  }
+
+  .title {
+    line-height: 1.02;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  .tabs span {
+    min-height: 44px;
+    padding-inline: 0.7rem;
+  }
+
+  .cardGrid {
+    gap: 0.85rem;
+  }
+
+  .essayList {
+    display: grid;
+    gap: 0.9rem;
+    border-top: 0;
+  }
+}

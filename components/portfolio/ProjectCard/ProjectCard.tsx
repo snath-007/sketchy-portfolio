@@ -8,11 +8,18 @@ import styles from "./ProjectCard.module.css";
 
 interface ProjectCardProps {
   project: ProjectItem;
+  blended?: boolean;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({
+  project,
+  blended = false,
+}: ProjectCardProps) {
   return (
-    <Card hover className={styles.card}>
+    <Card
+      hover
+      className={`${styles.card} ${blended ? styles.blendedCard : ""}`}
+    >
       <div className={styles.content}>
         <Badge>Lab Project</Badge>
 
@@ -28,8 +35,24 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </Link>
 
           {project.github && (
-            <Link href={project.github} className={styles.link}>
+            <Link
+              href={project.github}
+              className={styles.link}
+              target="_blank"
+              rel="noreferrer"
+            >
               View code <ArrowRight size={14} />
+            </Link>
+          )}
+
+          {project.liveDemo && project.liveDemo !== "#" && (
+            <Link
+              href={project.liveDemo}
+              className={styles.link}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Live demo <ArrowRight size={14} />
             </Link>
           )}
         </div>

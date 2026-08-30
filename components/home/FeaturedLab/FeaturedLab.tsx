@@ -27,7 +27,7 @@ export default function FeaturedLab() {
         <div className={styles.showcase}>
           <div className={styles.grid}>
             {featured.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.id} project={project} blended />
             ))}
           </div>
           <ProductTheatre variant="revflow" />
